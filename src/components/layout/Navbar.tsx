@@ -7,11 +7,12 @@ import { Button } from '@/components/ui/button'
 import { cn } from '@/lib/utils'
 
 const NAV_LINKS = [
-  { label: 'New',       to: '/category/new' },
-  { label: 'Shivling',  to: '/category/shivling' },
-  { label: 'Jaladhari', to: '/category/jaladhari' },
-  { label: 'Somasutra', to: '/category/somasutra' },
-  { label: 'Sale',      to: '/category/sale' },
+  { label: 'New',            to: '/category/new' },
+  { label: 'Shivling',       to: '/category/shivling' },
+  { label: 'Jaladhari',      to: '/category/jaladhari' },
+  { label: 'Trishul',        to: '/category/trishul' },
+  { label: 'Abhishek Patra', to: '/category/abhishek-patra' },
+  { label: 'Sale',           to: '/category/sale' },
 ]
 
 export function Navbar() {

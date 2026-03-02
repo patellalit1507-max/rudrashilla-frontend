@@ -47,7 +47,7 @@ export const PRODUCTS: Product[] = [
     name: 'Leather Crossbody Bag',
     price: 79.99,
     image: 'https://images.unsplash.com/photo-1548036328-c9fa89d128fa?w=400&q=80',
-    category: 'Somasutra',
+    category: 'Trishul',
     rating: 4.6,
     reviewCount: 67,
     description: 'Genuine leather crossbody bag for daily use.',
@@ -72,7 +72,7 @@ export const PRODUCTS: Product[] = [
     price: 149.99,
     originalPrice: 199.99,
     image: 'https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=400&q=80',
-    category: 'Somasutra',
+    category: 'Trishul',
     rating: 4.4,
     reviewCount: 112,
     badge: 'hot',
@@ -84,7 +84,7 @@ export const PRODUCTS: Product[] = [
     name: 'Canvas Tote Bag',
     price: 24.99,
     image: 'https://images.unsplash.com/photo-1566150905458-1bf1fc113f0d?w=400&q=80',
-    category: 'Somasutra',
+    category: 'Trishul',
     rating: 4.2,
     reviewCount: 34,
     description: 'Durable eco-friendly canvas tote for everyday errands.',
@@ -106,5 +106,5 @@ export const PRODUCTS: Product[] = [
   },
 ]
 
-export const CATEGORIES = ['All', 'Shivling', 'Jaladhari', 'Somasutra'] as const
+export const CATEGORIES = ['All', 'Shivling', 'Jaladhari', 'Trishul', 'Abhishek Patra'] as const
 export type CategoryType = (typeof CATEGORIES)[number]

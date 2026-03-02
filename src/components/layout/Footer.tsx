@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom'
 
 const LINKS = {
-  Shop:    ['New Arrivals', 'Shivling', 'Jaladhari', 'Somasutra', 'Sale'],
+  Shop:    ['New Arrivals', 'Shivling', 'Jaladhari', 'Trishul', 'Abhishek Patra', 'Sale'],
   Help:    ['Shipping & Returns', 'Size Guide', 'FAQ', 'Contact Us', 'Track Order'],
   Company: ['About Us', 'Careers', 'Press', 'Sustainability', 'Privacy Policy'],
 }
