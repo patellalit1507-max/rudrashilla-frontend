@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Rudra — Fashion & Style</title>
+
+    <!-- Prevent this page being embedded in an iframe (clickjacking) -->
+    <meta http-equiv="X-Frame-Options" content="DENY" />
+    <!-- Stop browsers guessing MIME types (MIME-sniffing attacks) -->
+    <meta http-equiv="X-Content-Type-Options" content="nosniff" />
+    <!-- Only send origin, not full URL, as Referer to third parties -->
+    <meta name="referrer" content="strict-origin-when-cross-origin" />
+    <!--
+      Content Security Policy:
+      script-src 'self'           — no inline scripts, no eval
+      style-src 'unsafe-inline'  — required for Tailwind runtime injection
+      img-src https: data:       — product images from any HTTPS host
+      connect-src                — API calls only to our backend
+      frame-ancestors 'none'     — belt-and-suspenders over X-Frame-Options
+      object-src 'none'          — block Flash / plugins
+      base-uri 'self'            — prevent base-tag hijacking
+    -->
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' https: data:; connect-src 'self' https://rudrashilla-backend.onrender.com; font-src 'self'; frame-ancestors 'none'; object-src 'none'; base-uri 'self';"
+    />
+  </head>
+  <body>
+    <div id="root"></div>
+    <!-- Restores URL encoded by 404.html; must run synchronously before React -->
+    <script src="./spa-redirect.js"></script>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
