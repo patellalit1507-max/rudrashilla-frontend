@@ -10,7 +10,7 @@
       // We encode the intended path into the query string and redirect to the root,
       // where spa-redirect.js picks it up and restores the real URL before React loads.
       // Reference: https://github.com/rafgraph/spa-github-pages
-      var pathSegmentsToKeep = 1; // 1 = keep /rudrashilla-frontend prefix
+      var pathSegmentsToKeep = 0; // 0 = custom domain serves from root (no sub-path prefix)
       var l = window.location;
       l.replace(
         l.protocol + '//' + l.host +

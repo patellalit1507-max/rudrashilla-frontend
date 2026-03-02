@@ -40,9 +40,9 @@ jobs:
       - name: Build
         run: npm run build
         env:
-          # GitHub Pages serves from /rudrashilla-frontend/
+          # Custom domain rudrashilla.com serves from root — base path is /
           # This is read by vite.config.ts (base) and src/App.tsx (BrowserRouter basename)
-          VITE_BASE_PATH: /rudrashilla-frontend/
+          VITE_BASE_PATH: /
           # Set VITE_API_URL in: repo Settings → Secrets → Actions → New secret
           VITE_API_URL: ${{ secrets.VITE_API_URL }}
 
