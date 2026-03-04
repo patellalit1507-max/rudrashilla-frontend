@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
-import { Link, useSearchParams } from 'react-router-dom'
-import { ArrowRight } from 'lucide-react'
+import { Link, useSearchParams, useNavigate } from 'react-router-dom'
+import { ArrowRight, X } from 'lucide-react'
 import logo from '@/assets/logo/logo.png'
 import { ProductGrid } from '@/components/product/ProductGrid'
 import { Button } from '@/components/ui/button'
@@ -14,6 +14,7 @@ export function Home() {
   const [searchParams] = useSearchParams()
   const searchQuery = searchParams.get('search') ?? ''
 
+  const navigate = useNavigate()
   const [active, setActive]     = useState<CategoryType>('All')
   const [products, setProducts] = useState<Product[]>([])
   const [loading, setLoading]   = useState(true)
@@ -91,12 +92,21 @@ export function Home() {
       {/* Product grid */}
       <section className="container mx-auto max-w-screen-2xl px-4 md:px-6">
         {searchQuery ? (
-          <h2 className="mb-6 text-xl font-semibold md:text-2xl">
-            Results for &ldquo;{searchQuery}&rdquo;
-            <span className="ml-2 text-base font-normal text-muted-foreground">
-              ({products.length} found)
-            </span>
-          </h2>
+          <div className="mb-6 flex items-center gap-3">
+            <h2 className="text-xl font-semibold md:text-2xl">
+              Results for &ldquo;{searchQuery}&rdquo;
+              <span className="ml-2 text-base font-normal text-muted-foreground">
+                ({products.length} found)
+              </span>
+            </h2>
+            <button
+              onClick={() => navigate('/')}
+              aria-label="Clear search"
+              className="flex size-7 shrink-0 items-center justify-center rounded-full bg-muted text-muted-foreground transition-colors hover:bg-destructive/10 hover:text-destructive"
+            >
+              <X className="size-4" />
+            </button>
+          </div>
         ) : (
           <h2 className="mb-6 text-xl font-semibold md:text-2xl">Featured Products</h2>
         )}
