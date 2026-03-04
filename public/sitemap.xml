@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+
+  <!-- Homepage -->
+  <url>
+    <loc>https://rudrashilla.com/</loc>
+    <changefreq>daily</changefreq>
+    <priority>1.0</priority>
+  </url>
+
+  <!-- Shivling — highest priority product category -->
+  <url>
+    <loc>https://rudrashilla.com/category/shivling</loc>
+    <changefreq>daily</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <!-- Jaladhari -->
+  <url>
+    <loc>https://rudrashilla.com/category/jaladhari</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- Abhishek Patra -->
+  <url>
+    <loc>https://rudrashilla.com/category/abhishek-patra</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- Trishul -->
+  <url>
+    <loc>https://rudrashilla.com/category/trishul</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- New Arrivals -->
+  <url>
+    <loc>https://rudrashilla.com/category/new</loc>
+    <changefreq>daily</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <!-- Sale -->
+  <url>
+    <loc>https://rudrashilla.com/category/sale</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+</urlset>

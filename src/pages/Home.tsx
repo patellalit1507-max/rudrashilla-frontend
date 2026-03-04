@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 import { Link, useSearchParams, useNavigate } from 'react-router-dom'
+import { Helmet } from 'react-helmet-async'
 import { ArrowRight, X } from 'lucide-react'
 import logo from '@/assets/logo/logo.png'
 import { ProductGrid } from '@/components/product/ProductGrid'
@@ -46,8 +47,17 @@ export function Home() {
     return () => clearTimeout(timer)
   }, [active, searchQuery])
 
+  const helmetTitle = searchQuery
+    ? `Search: ${searchQuery} | Rudrashilla`
+    : 'Rudrashilla – Authentic Narmadeshwar Shivling | Buy Original Narmada Shivling Online'
+
   return (
     <div className="flex flex-col gap-6 pb-16">
+      <Helmet>
+        <title>{helmetTitle}</title>
+        <meta name="description" content="Buy authentic Narmadeshwar Shivling from Maa Narmada River. Shop Jaladhari, Abhishek Patra, Trishul. 100% original. Pan-India shipping." />
+        <link rel="canonical" href="https://rudrashilla.com/" />
+      </Helmet>
       {/* Hero Banner — hide when searching */}
       {!searchQuery && (
         <section id="hero-banner" className="bg-muted/40">
