@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 import { useParams, Link, Navigate } from 'react-router-dom'
+import { Helmet } from 'react-helmet-async'
 import {
   Star,
   ShoppingCart,
@@ -238,8 +239,48 @@ export function ProductDetail() {
     setTimeout(() => setAdded(false), 2000)
   }
 
+  const seoTitle = `${product.name} | Authentic Narmadeshwar Shivling – Rudrashilla`
+  const seoDesc = isShivling
+    ? `${product.name} — authentic Narmadeshwar Shivling naturally formed in the sacred Narmada River. Ideal for home temple, puja and abhishek. ${product.description}`
+    : `${product.name} — ${product.description} Shop authentic puja items at Rudrashilla. Pan-India shipping.`
+  const productSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'Product',
+    name: product.name,
+    image: product.image,
+    description: product.description,
+    brand: { '@type': 'Brand', name: 'Rudrashilla' },
+    offers: isShivling
+      ? {
+          '@type': 'Offer',
+          availability: 'https://schema.org/InStock',
+          priceCurrency: 'INR',
+          seller: { '@type': 'Organization', name: 'Rudrashilla' },
+        }
+      : {
+          '@type': 'Offer',
+          price: product.price,
+          priceCurrency: 'INR',
+          availability: product.inStock === false
+            ? 'https://schema.org/OutOfStock'
+            : 'https://schema.org/InStock',
+          seller: { '@type': 'Organization', name: 'Rudrashilla' },
+        },
+  }
+
   return (
     <div className="container mx-auto max-w-screen-xl px-4 py-6 md:px-6 md:py-10">
+      <Helmet>
+        <title>{seoTitle}</title>
+        <meta name="description" content={seoDesc.slice(0, 160)} />
+        <link rel="canonical" href={`https://rudrashilla.com/product/${product.id}`} />
+        <meta property="og:title" content={seoTitle} />
+        <meta property="og:description" content={seoDesc.slice(0, 160)} />
+        <meta property="og:image" content={product.image} />
+        <meta property="og:url" content={`https://rudrashilla.com/product/${product.id}`} />
+        <meta property="og:type" content="product" />
+        <script type="application/ld+json">{JSON.stringify(productSchema)}</script>
+      </Helmet>
 
       {/* Breadcrumb */}
       <nav aria-label="breadcrumb" className="mb-6 flex items-center gap-1.5 text-sm text-muted-foreground">
@@ -264,7 +305,8 @@ export function ProductDetail() {
         <div className="overflow-hidden rounded-xl border border-border bg-muted">
           <img
             src={product.image}
-            alt={product.name}
+            alt={`${product.name} — authentic Narmadeshwar Shivling from Narmada River`}
+            loading="lazy"
             className="h-full w-full object-cover"
             style={{ maxHeight: '560px' }}
           />

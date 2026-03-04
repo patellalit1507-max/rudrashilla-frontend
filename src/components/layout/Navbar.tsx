@@ -14,6 +14,7 @@ const NAV_LINKS = [
   { label: 'Trishul',        to: '/category/trishul' },
   { label: 'Abhishek Patra', to: '/category/abhishek-patra' },
   { label: 'Sale',           to: '/category/sale' },
+  { label: 'Blog',           to: '/blog' },
 ]
 
 
@@ -24,7 +25,7 @@ export function Navbar() {
   const [searchQuery, setSearchQuery] = useState('')
   const navigate = useNavigate()
 
-  function handleSearchSubmit(e: React.FormEvent) {
+  function handleSearchSubmit(e: React.SyntheticEvent) {
     e.preventDefault()
     const q = searchQuery.trim()
     if (q) {

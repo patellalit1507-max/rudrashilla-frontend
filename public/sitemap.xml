@@ -51,4 +51,38 @@
     <priority>0.6</priority>
   </url>
 
+  <!-- Blog listing -->
+  <url>
+    <loc>https://rudrashilla.com/blog</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <!-- Blog articles -->
+  <url>
+    <loc>https://rudrashilla.com/blog/what-is-narmadeshwar-shivling</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://rudrashilla.com/blog/benefits-of-narmadeshwar-shivling</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://rudrashilla.com/blog/how-to-identify-original-narmadeshwar-shivling</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://rudrashilla.com/blog/how-to-do-shivling-abhishek-at-home</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://rudrashilla.com/blog/why-narmada-river-stones-are-sacred</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
 </urlset>
