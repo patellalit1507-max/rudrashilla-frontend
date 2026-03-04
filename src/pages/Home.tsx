@@ -23,10 +23,22 @@ export function Home() {
     const timer = setTimeout(() => {
       fetchProducts({
         category: active === 'All' ? undefined : active,
-        search:   searchQuery || undefined,
-        limit:    50,
+        limit: 50,
       })
-        .then((res) => setProducts(res.products))
+        .then((res) => {
+          if (!searchQuery.trim()) {
+            setProducts(res.products)
+          } else {
+            const q = searchQuery.trim().toLowerCase()
+            setProducts(
+              res.products.filter((p) =>
+                p.name.toLowerCase().includes(q) ||
+                p.category?.toLowerCase().includes(q) ||
+                p.description?.toLowerCase().includes(q),
+              ),
+            )
+          }
+        })
         .catch(() => setProducts([]))
         .finally(() => setLoading(false))
     }, 300)
