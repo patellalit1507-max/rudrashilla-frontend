@@ -18,12 +18,14 @@ export async function fetchProducts(params?: {
   sort?: string
   page?: number
   limit?: number
+  search?: string
 }): Promise<ProductsResult> {
   const qs = new URLSearchParams()
   if (params?.category) qs.set('category', params.category)
   if (params?.sort)     qs.set('sort', params.sort)
   if (params?.page)     qs.set('page', String(params.page))
   if (params?.limit)    qs.set('limit', String(params.limit))
+  if (params?.search)   qs.set('search', params.search)
 
   const data = await apiFetch<{ products: Record<string, unknown>[]; total: number; page: number; pages: number }>(
     `/products?${qs}`

@@ -2,6 +2,7 @@ import { Outlet } from 'react-router-dom'
 import { Navbar } from '@/components/layout/Navbar'
 import { Footer } from '@/components/layout/Footer'
 import { MiniCart } from '@/components/cart/MiniCart'
+import { FloatingActions } from '@/components/common/FloatingActions'
 
 export function MainLayout() {
   return (
@@ -12,6 +13,7 @@ export function MainLayout() {
       </main>
       <Footer />
       <MiniCart />
+      <FloatingActions />
     </div>
   )
 }
