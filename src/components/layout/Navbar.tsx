@@ -7,6 +7,7 @@ import { Button } from '@/components/ui/button'
 import { cn } from '@/lib/utils'
 
 const NAV_LINKS = [
+  { label: 'Home',           to: '/' },
   { label: 'New',            to: '/category/new' },
   { label: 'Shivling',       to: '/category/shivling' },
   { label: 'Jaladhari',      to: '/category/jaladhari' },
