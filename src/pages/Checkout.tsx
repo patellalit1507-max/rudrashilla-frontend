@@ -5,6 +5,7 @@ import { useCart } from '@/contexts/CartContext'
 import { Button } from '@/components/ui/button'
 import { Separator } from '@/components/ui/separator'
 import { placeOrder } from '@/services/orderService'
+import { sendOrderEmail } from '@/services/notificationService'
 
 interface CheckoutForm {
   name: string
@@ -119,6 +120,15 @@ export function Checkout() {
     setApiError(null)
     try {
       await placeOrder(form, items)
+      sendOrderEmail({
+        items: items.map((i) => ({
+          name: i.product.name,
+          quantity: i.quantity,
+          price: i.product.price,
+          selectedSize: i.selectedSize,
+        })),
+        total: totalPrice,
+      })
       dispatch({ type: 'CLEAR_CART' })
       setPlaced(true)
     } catch {
