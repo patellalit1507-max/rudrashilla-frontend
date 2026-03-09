@@ -1,5 +1,5 @@
-import { Link } from 'react-router-dom'
-import { MessageCircle, Minus, Plus, ShoppingBag, Trash2 } from 'lucide-react'
+import { Link, useNavigate } from 'react-router-dom'
+import { Minus, Plus, ShoppingBag, Trash2 } from 'lucide-react'
 import { useCart } from '@/contexts/CartContext'
 import { Button } from '@/components/ui/button'
 import { Separator } from '@/components/ui/separator'
@@ -14,24 +14,13 @@ import {
 
 export function MiniCart() {
   const { state, dispatch, totalItems, totalPrice } = useCart()
+  const navigate = useNavigate()
 
   const close = () => dispatch({ type: 'CLOSE_CART' })
 
-  function handleWhatsAppOrder() {
-    const items = state.items
-    const lines = [
-      '🛒 *New Order — Rudrashilla*',
-      '',
-      ...items.map(({ product, quantity, selectedSize }) =>
-        `• ${product.name}${selectedSize ? ` (${selectedSize})` : ''} × ${quantity} — ₹${(product.price * quantity).toLocaleString('en-IN')}`
-      ),
-      '',
-      `*Total: ₹${totalPrice.toLocaleString('en-IN')}*`,
-      '',
-      'Please confirm my order. Thank you!',
-    ].join('\n')
-    window.open(`https://wa.me/919617843787?text=${encodeURIComponent(lines)}`, '_blank', 'noopener,noreferrer')
+  function handleCheckout() {
     close()
+    navigate('/checkout')
   }
 
   return (
@@ -169,9 +158,8 @@ export function MiniCart() {
               </div>
             </div>
 
-            <Button className="mt-2 w-full" size="lg" onClick={handleWhatsAppOrder}>
-              <MessageCircle className="size-4" />
-              Order via WhatsApp
+            <Button className="mt-2 w-full" size="lg" onClick={handleCheckout}>
+              Proceed to Checkout
             </Button>
             <Button
               variant="outline"
