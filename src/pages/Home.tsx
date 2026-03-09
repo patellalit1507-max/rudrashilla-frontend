@@ -143,6 +143,68 @@ export function Home() {
 
         <ProductGrid products={products} loading={loading} />
       </section>
+
+      {/* FAQ Section — SEO rich results + helpful for users */}
+      {!searchQuery && (
+        <section className="container mx-auto max-w-screen-2xl px-4 md:px-6 pb-4">
+          <Helmet>
+            <script type="application/ld+json">{JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "FAQPage",
+              "mainEntity": [
+                {
+                  "@type": "Question",
+                  "name": "What is a Narmadeshwar Shivling?",
+                  "acceptedAnswer": { "@type": "Answer", "text": "A Narmadeshwar Shivling is a naturally formed sacred stone found in the Narmada River in India. Unlike man-made Shivlings, these are shaped over thousands of years by the river's current and are considered self-consecrated (swayambhu) — meaning they can be worshipped at home without any special consecration ceremony." }
+                },
+                {
+                  "@type": "Question",
+                  "name": "Can I buy Shivling online?",
+                  "acceptedAnswer": { "@type": "Answer", "text": "Yes, you can buy authentic Narmadeshwar Shivling online from Rudrashilla. We source every Shivling directly from certified collectors on the banks of Maa Narmada River and deliver pan-India. Each Shivling is verified for authenticity before listing." }
+                },
+                {
+                  "@type": "Question",
+                  "name": "What is the price of Narmadeshwar Shivling?",
+                  "acceptedAnswer": { "@type": "Answer", "text": "Narmadeshwar Shivling price ranges from ₹200 for small sizes (2–4 inches) to ₹8,000+ for extra large Shivlings (9+ inches). Price depends on size, weight, and natural markings. Shivlings with rare markings like Nandi or Trishul impressions are priced higher." }
+                },
+                {
+                  "@type": "Question",
+                  "name": "What is a Jaladhari and why do I need it?",
+                  "acceptedAnswer": { "@type": "Answer", "text": "A Jaladhari is the base vessel in which the Shivling is placed during puja. It collects the abhishek fluid (water, milk, panchamrit) poured over the Shivling and channels it through a spout. No Shivling puja is considered complete without a Jaladhari. The spout should always face north." }
+                },
+                {
+                  "@type": "Question",
+                  "name": "Is Narmadeshwar Shivling good for home?",
+                  "acceptedAnswer": { "@type": "Answer", "text": "Yes, Narmadeshwar Shivling is ideal for home worship. Unlike other Shivlings, it does not require consecration before worship — any family member can perform daily puja. According to Vastu Shastra, placing it in the northeast corner of the puja room brings positive energy and removes Vastu doshas." }
+                },
+                {
+                  "@type": "Question",
+                  "name": "How do I identify an original Narmadeshwar Shivling?",
+                  "acceptedAnswer": { "@type": "Answer", "text": "An original Narmadeshwar Shivling is naturally smooth (not artificially polished), feels surprisingly heavy for its size, remains cool to the touch, has a natural elliptical shape, and may have organic markings or patterns. It should never have painted markings or machine-cut edges." }
+                },
+              ]
+            })}</script>
+          </Helmet>
+          <div className="mt-8 border-t pt-10">
+            <h2 className="mb-6 text-xl font-semibold md:text-2xl">Frequently Asked Questions</h2>
+            <div className="grid gap-4 md:grid-cols-2">
+              {[
+                { q: 'What is a Narmadeshwar Shivling?', a: 'A Narmadeshwar Shivling is a naturally formed sacred stone from the Narmada River, shaped over thousands of years by the river\'s current. It is self-consecrated — worship can begin immediately without any special ceremony.' },
+                { q: 'Can I buy Shivling online?', a: 'Yes. Rudrashilla ships authentic Narmadeshwar Shivling pan-India. Every Shivling is sourced directly from certified collectors on the banks of Maa Narmada River and verified for authenticity.' },
+                { q: 'What is the price of Narmadeshwar Shivling?', a: 'Price ranges from ₹200 for small sizes (2–4 inch) to ₹8,000+ for extra large Shivlings. Price depends on size, weight, and natural markings like Nandi or Trishul impressions.' },
+                { q: 'What is a Jaladhari and why do I need it?', a: 'A Jaladhari is the base vessel that holds the Shivling during puja and collects the abhishek fluid. The spout should always face north. No Shivling puja is complete without a Jaladhari.' },
+                { q: 'Is Narmadeshwar Shivling good for home worship?', a: 'Yes — it is the most recommended Shivling for home temples. No consecration needed, suitable for all family members, and excellent for Vastu when placed in the northeast corner of the puja room.' },
+                { q: 'How to identify original Narmadeshwar Shivling?', a: 'Authentic Shivlings are naturally smooth, feel heavy for their size, stay cool to the touch, have a natural elliptical shape, and show organic markings. Avoid stones with painted markings or machine-cut edges.' },
+              ].map(({ q, a }) => (
+                <div key={q} className="rounded-lg border bg-muted/30 p-4">
+                  <h3 className="font-medium text-sm md:text-base">{q}</h3>
+                  <p className="mt-1.5 text-sm text-muted-foreground">{a}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
     </div>
   )
 }
