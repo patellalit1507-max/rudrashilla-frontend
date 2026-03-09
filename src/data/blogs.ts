@@ -290,7 +290,6 @@ With proper care, a Narmadeshwar Shivling lasts a lifetime — and beyond, as a 
     ],
     cta: { label: 'Explore Narmadeshwar Shivling Collection', to: '/category/shivling' },
   },
-,
 
   {
     slug: 'buy-shivling-online-india',
@@ -371,11 +370,11 @@ With proper care, a Narmadeshwar Shivling lasts a lifetime — and beyond, as a 
       },
       {
         heading: 'Who is Nandi?',
-        body: 'Nandi (Nandikeshwara) is the divine bull who serves as Lord Shiva's vehicle (vahana), gatekeeper, and chief devotee. According to the Shiva Purana, Shiva made Nandi his vehicle and bestowed upon him the position of chief among the Shiva ganas. Nandi guards the entrance of Kailash — Shiva's divine abode.',
+        body: `Nandi (Nandikeshwara) is the divine bull who serves as Lord Shiva's vehicle (vahana), gatekeeper, and chief devotee. According to the Shiva Purana, Shiva made Nandi his vehicle and bestowed upon him the position of chief among the Shiva ganas. Nandi guards the entrance of Kailash — Shiva's divine abode.`,
       },
       {
         heading: 'Why Does Nandi Always Face the Shivling?',
-        body: 'Nandi's eternal gaze at the Shivling represents unwavering, unconditional devotion. Devotees are taught to emulate this single-pointed focus in their own worship.\n\nA traditional belief holds that looking through Nandi's horns at the Shivling in a temple grants your wish — still practised at ancient temples like Brihadeeswara and Kashi Vishwanath.',
+        body: `Nandi's eternal gaze at the Shivling represents unwavering, unconditional devotion. Devotees are taught to emulate this single-pointed focus in their own worship.\n\nA traditional belief holds that looking through Nandi's horns at the Shivling in a temple grants your wish — still practised at ancient temples like Brihadeeswara and Kashi Vishwanath.`,
       },
       {
         heading: 'What is a Nandi-Marked Narmadeshwar Shivling?',
@@ -383,7 +382,7 @@ With proper care, a Narmadeshwar Shivling lasts a lifetime — and beyond, as a 
       },
       {
         heading: 'Other Sacred Markings on Narmadeshwar Shivling',
-        body: 'Trishul Lines — Three parallel natural lines symbolising Shiva's Trishul. Associated with protection.\n\nSerpent (Naga) Marking — Coil-like patterns resembling Vasuki, the serpent of Lord Shiva.\n\nArdhnareshwar Marking — A natural line dividing the Shivling into two halves, representing the union of Shiva and Shakti.\n\nPlain, unmarked Shivlings are equally sacred — markings are special gifts of Maa Narmada.',
+        body: `Trishul Lines — Three parallel natural lines symbolising Shiva's Trishul. Associated with protection.\n\nSerpent (Naga) Marking — Coil-like patterns resembling Vasuki, the serpent of Lord Shiva.\n\nArdhnareshwar Marking — A natural line dividing the Shivling into two halves, representing the union of Shiva and Shakti.\n\nPlain, unmarked Shivlings are equally sacred — markings are special gifts of Maa Narmada.`,
       },
     ],
     cta: { label: 'Explore Narmadeshwar Shivling Collection', to: '/category/shivling' },
