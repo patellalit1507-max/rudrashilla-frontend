@@ -1,0 +1,13 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm install:*)",
+      "Bash(node -e:*)",
+      "Bash(npx tsc:*)",
+      "Bash(npm run build:*)",
+      "Bash(node scripts/generate-og-image.mjs)",
+      "Bash(ping -n 1 github.com)",
+      "Bash(GIT_EDITOR=true git rebase --continue)"
+    ]
+  }
+}
