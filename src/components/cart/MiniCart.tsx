@@ -1,5 +1,5 @@
-import { Link, useNavigate } from 'react-router-dom'
-import { Minus, Plus, ShoppingBag, Trash2 } from 'lucide-react'
+import { Link } from 'react-router-dom'
+import { MessageCircle, Minus, Plus, ShoppingBag, Trash2 } from 'lucide-react'
 import { useCart } from '@/contexts/CartContext'
 import { Button } from '@/components/ui/button'
 import { Separator } from '@/components/ui/separator'
@@ -14,13 +14,24 @@ import {
 
 export function MiniCart() {
   const { state, dispatch, totalItems, totalPrice } = useCart()
-  const navigate = useNavigate()
 
   const close = () => dispatch({ type: 'CLOSE_CART' })
 
-  function handleCheckout() {
+  function handleWhatsAppOrder() {
+    const items = state.items
+    const lines = [
+      '🛒 *New Order — Rudrashilla*',
+      '',
+      ...items.map(({ product, quantity, selectedSize }) =>
+        `• ${product.name}${selectedSize ? ` (${selectedSize})` : ''} × ${quantity} — ₹${(product.price * quantity).toLocaleString('en-IN')}`
+      ),
+      '',
+      `*Total: ₹${totalPrice.toLocaleString('en-IN')}*`,
+      '',
+      'Please confirm my order. Thank you!',
+    ].join('\n')
+    window.open(`https://wa.me/919617843787?text=${encodeURIComponent(lines)}`, '_blank', 'noopener,noreferrer')
     close()
-    navigate('/checkout')
   }
 
   return (
@@ -91,7 +102,7 @@ export function MiniCart() {
                     )}
 
                     <p className="text-sm font-semibold">
-                      ${(product.price * quantity).toFixed(2)}
+                      ₹{(product.price * quantity).toLocaleString('en-IN')}
                     </p>
 
                     {/* Qty controls */}
@@ -146,7 +157,7 @@ export function MiniCart() {
             <div className="flex flex-col gap-1.5 text-sm">
               <div className="flex justify-between text-muted-foreground">
                 <span>Subtotal</span>
-                <span>${totalPrice.toFixed(2)}</span>
+                <span>₹{totalPrice.toLocaleString('en-IN')}</span>
               </div>
               <div className="flex justify-between text-muted-foreground">
                 <span>Shipping</span>
@@ -154,12 +165,13 @@ export function MiniCart() {
               </div>
               <div className="flex justify-between font-semibold text-base mt-1">
                 <span>Total</span>
-                <span>${totalPrice.toFixed(2)}</span>
+                <span>₹{totalPrice.toLocaleString('en-IN')}</span>
               </div>
             </div>
 
-            <Button className="mt-2 w-full" size="lg" onClick={handleCheckout}>
-              Proceed to Checkout
+            <Button className="mt-2 w-full" size="lg" onClick={handleWhatsAppOrder}>
+              <MessageCircle className="size-4" />
+              Order via WhatsApp
             </Button>
             <Button
               variant="outline"
