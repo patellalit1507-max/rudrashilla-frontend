@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom'
 import { ArrowLeft, MessageCircle, Minus, Plus, ShoppingBag, Trash2 } from 'lucide-react'
 import { useCart } from '@/contexts/CartContext'
+import { sendOrderEmail } from '@/services/notificationService'
 import { Button } from '@/components/ui/button'
 
 export function Cart() {
@@ -145,6 +146,15 @@ export function Cart() {
                   'Please confirm my order. Thank you!',
                 ].join('\n')
                 window.open(`https://wa.me/919617843787?text=${encodeURIComponent(lines)}`, '_blank', 'noopener,noreferrer')
+                sendOrderEmail({
+                  items: items.map((i) => ({
+                    name: i.product.name,
+                    quantity: i.quantity,
+                    price: i.product.price,
+                    selectedSize: i.selectedSize,
+                  })),
+                  total: totalPrice,
+                })
               }}
             >
               <MessageCircle className="size-4" />

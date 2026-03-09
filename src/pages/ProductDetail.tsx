@@ -18,6 +18,7 @@ import { Badge } from '@/components/ui/badge'
 import { Separator } from '@/components/ui/separator'
 import { cn } from '@/lib/utils'
 import { fetchProduct } from '@/services/productService'
+ import { sendEnquiryEmail } from '@/services/notificationService'
 import { fetchReviews } from '@/services/reviewService'
 import type { Product } from '@/types'
 import { CATEGORIES } from '@/data/products'
@@ -124,6 +125,7 @@ function EnquiryForm({ productName }: { productName: string }) {
       'Please share price and availability. Thank you!',
     ].filter(Boolean).join('\n'))
     window.open('https://wa.me/919617843787?text=' + msg, '_blank', 'noopener,noreferrer')
+    sendEnquiryEmail({ productName, customerName: form.name, customerPhone: form.phone, message: form.message })
     setSent(true)
     setSubmitting(false)
   }
