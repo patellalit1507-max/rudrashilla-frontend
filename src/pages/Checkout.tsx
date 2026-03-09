@@ -8,7 +8,6 @@ import { placeOrder } from '@/services/orderService'
 
 interface CheckoutForm {
   name: string
-  email: string
   phone: string
   addressLine1: string
   addressLine2: string
@@ -19,7 +18,6 @@ interface CheckoutForm {
 
 const EMPTY_FORM: CheckoutForm = {
   name: '',
-  email: '',
   phone: '',
   addressLine1: '',
   addressLine2: '',
@@ -84,7 +82,7 @@ export function Checkout() {
           <h1 className="text-2xl font-bold">Order Placed!</h1>
           <p className="text-muted-foreground">
             Thank you, <strong>{form.name}</strong>. We've received your order and will contact you
-            at <strong>{form.phone}</strong> / <strong>{form.email}</strong> to confirm.
+            at <strong>+91 {form.phone}</strong> to confirm.
           </p>
           <p className="text-sm text-muted-foreground">
             Delivery to: {form.addressLine1}
@@ -102,15 +100,10 @@ export function Checkout() {
   // ── Validation ─────────────────────────────────────────────────────────────
   function validate(): boolean {
     const e: Partial<CheckoutForm> = {}
-    if (!form.name.trim())         e.name = 'Name is required'
-    if (!form.email.trim())        e.email = 'Email is required'
-    // Stricter regex: requires non-whitespace chars on both sides of @ and a dot in the domain
-    else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email.trim()))
-      e.email = 'Enter a valid email address'
-    if (!form.phone.trim())        e.phone = 'Phone number is required'
-    // Accepts +91XXXXXXXXXX or 10-digit Indian mobile numbers (starts with 6-9)
-    else if (!/^(\+91)?[6-9]\d{9}$/.test(form.phone.replace(/[\s\-()]/g, '')))
-      e.phone = 'Enter a valid 10-digit Indian mobile number'
+    if (!form.name.trim()) e.name = 'Name is required'
+    if (!form.phone.trim()) e.phone = 'Phone number is required'
+    else if (!/^[6-9]\d{9}$/.test(form.phone.replace(/[\s\-()]/g, '')))
+      e.phone = 'Enter a valid 10-digit mobile number'
     if (!form.addressLine1.trim()) e.addressLine1 = 'Address is required'
     if (!form.city.trim())         e.city = 'City is required'
     if (!form.state.trim())        e.state = 'State is required'
@@ -176,25 +169,20 @@ export function Checkout() {
                   {errors.name && <p className="text-xs text-destructive">{errors.name}</p>}
                 </Field>
 
-                <Field label="Email Address" required>
-                  <input
-                    type="email"
-                    placeholder="amit@example.com"
-                    value={form.email}
-                    onChange={set('email')}
-                    className={INPUT_CLS}
-                  />
-                  {errors.email && <p className="text-xs text-destructive">{errors.email}</p>}
-                </Field>
-
                 <Field label="Phone / WhatsApp" required>
-                  <input
-                    type="tel"
-                    placeholder="+91 98765 43210"
-                    value={form.phone}
-                    onChange={set('phone')}
-                    className={INPUT_CLS}
-                  />
+                  <div className="flex">
+                    <span className="flex items-center rounded-l-md border border-r-0 border-input bg-muted px-3 text-sm text-muted-foreground select-none">
+                      +91
+                    </span>
+                    <input
+                      type="tel"
+                      placeholder="98765 43210"
+                      maxLength={10}
+                      value={form.phone}
+                      onChange={set('phone')}
+                      className={`${INPUT_CLS} flex-1 rounded-l-none`}
+                    />
+                  </div>
                   {errors.phone && <p className="text-xs text-destructive">{errors.phone}</p>}
                 </Field>
               </div>
@@ -294,7 +282,7 @@ export function Checkout() {
                       <p className="text-xs text-muted-foreground">Qty: {quantity}</p>
                     </div>
                     <span className="shrink-0 text-sm font-semibold">
-                      ${(product.price * quantity).toFixed(2)}
+                      ₹{(product.price * quantity).toLocaleString('en-IN')}
                     </span>
                   </li>
                 ))}
@@ -306,7 +294,7 @@ export function Checkout() {
               <div className="flex flex-col gap-1.5 text-sm">
                 <div className="flex justify-between text-muted-foreground">
                   <span>Subtotal</span>
-                  <span>${totalPrice.toFixed(2)}</span>
+                  <span>₹{totalPrice.toLocaleString('en-IN')}</span>
                 </div>
                 <div className="flex justify-between text-muted-foreground">
                   <span>Shipping</span>
@@ -314,7 +302,7 @@ export function Checkout() {
                 </div>
                 <div className="flex justify-between font-semibold text-base mt-1">
                   <span>Total</span>
-                  <span>${totalPrice.toFixed(2)}</span>
+                  <span>₹{totalPrice.toLocaleString('en-IN')}</span>
                 </div>
               </div>
 
@@ -329,7 +317,7 @@ export function Checkout() {
               </Button>
 
               <p className="text-center text-xs text-muted-foreground">
-                We'll confirm your order via phone/email within 24 hours.
+                We'll confirm your order via WhatsApp/call within 24 hours.
               </p>
             </div>
           </div>
