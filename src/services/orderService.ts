@@ -9,7 +9,6 @@ export interface PlaceOrderResult {
 
 export interface OrderForm {
   name: string
-  email: string
   phone: string
   addressLine1: string
   addressLine2: string
@@ -22,7 +21,7 @@ export async function placeOrder(form: OrderForm, items: CartItem[]): Promise<Pl
   return apiFetch<PlaceOrderResult>('/orders', {
     method: 'POST',
     body: JSON.stringify({
-      customer: { name: form.name, email: form.email, phone: form.phone },
+      customer: { name: form.name, phone: form.phone },
       address: {
         line1: form.addressLine1,
         line2: form.addressLine2 || undefined,
