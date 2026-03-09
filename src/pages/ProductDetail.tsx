@@ -19,7 +19,6 @@ import { Separator } from '@/components/ui/separator'
 import { cn } from '@/lib/utils'
 import { fetchProduct } from '@/services/productService'
 import { fetchReviews } from '@/services/reviewService'
-import { submitEnquiry } from '@/services/enquiryService'
 import type { Product } from '@/types'
 import { CATEGORIES } from '@/data/products'
 
@@ -105,24 +104,28 @@ function ReviewCard({ review }: { review: Review }) {
 }
 
 // ─── Enquiry form (Shivling products) ────────────────────────────────────────
-function EnquiryForm({ productId, productName }: { productId: string; productName: string }) {
+function EnquiryForm({ productName }: { productName: string }) {
   const [form, setForm] = useState({ name: '', phone: '', message: '' })
   const [sent, setSent] = useState(false)
   const [submitting, setSubmitting] = useState(false)
-  const [error, setError] = useState<string | null>(null)
 
-  async function handleSubmit(e: React.FormEvent) {
+  function handleSubmit(e: React.FormEvent) {
     e.preventDefault()
     setSubmitting(true)
-    setError(null)
-    try {
-      await submitEnquiry({ productId, productName, customer: form })
-      setSent(true)
-    } catch {
-      setError('Failed to submit. Please try again.')
-    } finally {
-      setSubmitting(false)
-    }
+    const msg = encodeURIComponent([
+      '🙏 *Product Enquiry — Rudrashilla*',
+      '',
+      '*Product:* ' + productName,
+      '',
+      '*Name:* ' + form.name,
+      '*Phone:* ' + form.phone,
+      form.message ? '*Message:* ' + form.message : '',
+      '',
+      'Please share price and availability. Thank you!',
+    ].filter(Boolean).join('\n'))
+    window.open('https://wa.me/919617843787?text=' + msg, '_blank', 'noopener,noreferrer')
+    setSent(true)
+    setSubmitting(false)
   }
 
   if (sent) {
@@ -171,7 +174,6 @@ function EnquiryForm({ productId, productName }: { productId: string; productNam
         onChange={(e) => setForm((f) => ({ ...f, message: e.target.value }))}
         className="resize-none rounded-md border border-input bg-background px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-ring"
       />
-      {error && <p className="text-xs text-destructive">{error}</p>}
       <Button type="submit" className="w-full" disabled={submitting}>
         <MessageCircle />
         {submitting ? 'Submitting…' : 'Submit Query'}
@@ -356,10 +358,10 @@ export function ProductDetail() {
             </div>
           ) : (
             <div className="flex items-baseline gap-3">
-              <span className="text-2xl font-bold">${product.price.toFixed(2)}</span>
+              <span className="text-2xl font-bold">₹{product.price.toLocaleString("en-IN")}</span>
               {product.originalPrice && (
                 <span className="text-base text-muted-foreground line-through">
-                  ${product.originalPrice.toFixed(2)}
+                  ₹{product.originalPrice!.toLocaleString("en-IN")}
                 </span>
               )}
               {discount && (
@@ -461,7 +463,7 @@ export function ProductDetail() {
           )}
 
           {/* Enquiry form for Shivling */}
-          {isShivling && <EnquiryForm productId={product.id} productName={product.name} />}
+          {isShivling && <EnquiryForm productName={product.name} />}
         </div>
       </div>
 

@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-import { ArrowLeft, Minus, Plus, ShoppingBag, Trash2 } from 'lucide-react'
+import { ArrowLeft, MessageCircle, Minus, Plus, ShoppingBag, Trash2 } from 'lucide-react'
 import { useCart } from '@/contexts/CartContext'
 import { Button } from '@/components/ui/button'
 
@@ -61,7 +61,7 @@ export function Cart() {
                   </p>
                 )}
                 <p className="mt-auto text-sm font-semibold">
-                  ${product.price.toFixed(2)}
+                  ₹{product.price.toLocaleString("en-IN")}
                 </p>
               </div>
 
@@ -118,7 +118,7 @@ export function Cart() {
             <div className="space-y-2 text-sm">
               <div className="flex justify-between">
                 <span className="text-muted-foreground">Subtotal</span>
-                <span>${totalPrice.toFixed(2)}</span>
+                <span>₹{totalPrice.toLocaleString("en-IN")}</span>
               </div>
               <div className="flex justify-between">
                 <span className="text-muted-foreground">Shipping</span>
@@ -126,11 +126,29 @@ export function Cart() {
               </div>
               <div className="mt-2 flex justify-between border-t border-border pt-2 font-semibold">
                 <span>Total</span>
-                <span>${totalPrice.toFixed(2)}</span>
+                <span>₹{totalPrice.toLocaleString("en-IN")}</span>
               </div>
             </div>
-            <Button className="mt-6 w-full" size="lg" asChild>
-              <Link to="/checkout">Checkout</Link>
+            <Button
+              className="mt-6 w-full"
+              size="lg"
+              onClick={() => {
+                const lines = [
+                  '🛒 *New Order — Rudrashilla*',
+                  '',
+                  ...items.map(({ product, quantity, selectedSize }) =>
+                    `• ${product.name}${selectedSize ? ` (${selectedSize})` : ''} × ${quantity} — ₹${(product.price * quantity).toLocaleString('en-IN')}`
+                  ),
+                  '',
+                  `*Total: ₹${totalPrice.toLocaleString('en-IN')}`,
+                  '',
+                  'Please confirm my order. Thank you!',
+                ].join('\n')
+                window.open(`https://wa.me/919617843787?text=${encodeURIComponent(lines)}`, '_blank', 'noopener,noreferrer')
+              }}
+            >
+              <MessageCircle className="size-4" />
+              Order via WhatsApp
             </Button>
             <Button
               variant="outline"

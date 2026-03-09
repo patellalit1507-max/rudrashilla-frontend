@@ -74,11 +74,11 @@ export function ProductCard({ product }: ProductCardProps) {
           ) : (
             <>
               <span className="text-sm font-semibold">
-                ${product.price.toFixed(2)}
+                ₹{product.price.toLocaleString("en-IN")}
               </span>
               {product.originalPrice && (
                 <span className="text-xs text-muted-foreground line-through">
-                  ${product.originalPrice.toFixed(2)}
+                  ₹{product.originalPrice!.toLocaleString("en-IN")}
                 </span>
               )}
             </>
