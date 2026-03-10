@@ -1,9 +1,9 @@
 import { apiFetch } from '@/lib/api'
 import type { Product } from '@/types'
 
-// Map backend _id → frontend id
+// Map backend _id → frontend id, preserve slug
 function mapProduct(p: Record<string, unknown>): Product {
-  return { ...(p as unknown as Product), id: p._id as string }
+  return { ...(p as unknown as Product), id: p._id as string, slug: p.slug as string | undefined }
 }
 
 export interface ProductsResult {

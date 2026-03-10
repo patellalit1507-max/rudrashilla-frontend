@@ -41,7 +41,7 @@ export function Cart() {
               key={`${product.id}-${selectedSize}-${selectedColor}`}
               className="flex gap-4 rounded-lg border border-border bg-card p-4"
             >
-              <Link to={`/product/${product.id}`} className="shrink-0">
+              <Link to={`/product/${product.slug ?? product.id}`} className="shrink-0">
                 <img
                   src={product.image}
                   alt={product.name}
@@ -51,7 +51,7 @@ export function Cart() {
 
               <div className="flex flex-1 flex-col gap-1 overflow-hidden">
                 <Link
-                  to={`/product/${product.id}`}
+                  to={`/product/${product.slug ?? product.id}`}
                   className="truncate font-medium hover:underline"
                 >
                   {product.name}

@@ -51,6 +51,33 @@
     <priority>0.6</priority>
   </url>
 
+  <!-- Individual product pages -->
+  <url>
+    <loc>https://rudrashilla.com/product/classic-narmadeshwar-shivling</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://rudrashilla.com/product/rudra-rekha-narmadeshwar-shivling</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://rudrashilla.com/product/gangadhara-narmadeshwar-shivling</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://rudrashilla.com/product/ardhnareshwar-narmadeshwar-shivling</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://rudrashilla.com/product/stone-shivling-jaladhari</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
   <!-- Blog listing -->
   <url>
     <loc>https://rudrashilla.com/blog</loc>

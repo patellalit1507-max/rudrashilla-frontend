@@ -25,7 +25,7 @@ export function ProductCard({ product }: ProductCardProps) {
     <article className="group relative flex flex-col overflow-hidden rounded-lg border border-border bg-card transition-shadow hover:shadow-md">
       {/* Image */}
       <Link
-        to={`/product/${product.id}`}
+        to={`/product/${product.slug ?? product.id}`}
         className="relative aspect-[3/4] overflow-hidden bg-muted"
       >
         <img
@@ -50,7 +50,7 @@ export function ProductCard({ product }: ProductCardProps) {
 
       {/* Body */}
       <div className="flex flex-1 flex-col gap-2 p-3">
-        <Link to={`/product/${product.id}`} className="flex-1">
+        <Link to={`/product/${product.slug ?? product.id}`} className="flex-1">
           <h3 className="line-clamp-2 text-sm font-medium leading-snug hover:underline">
             {product.name}
           </h3>
@@ -92,7 +92,7 @@ export function ProductCard({ product }: ProductCardProps) {
             className="mt-auto w-full"
             asChild
           >
-            <Link to={`/product/${product.id}`} aria-label={`Raise a query for ${product.name}`}>
+            <Link to={`/product/${product.slug ?? product.id}`} aria-label={`Raise a query for ${product.name}`}>
               <MessageCircle />
               Raise a Query
             </Link>

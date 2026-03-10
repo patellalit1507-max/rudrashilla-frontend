@@ -188,7 +188,8 @@ function EnquiryForm({ productName }: { productName: string }) {
 type Tab = 'description' | 'reviews'
 
 export function ProductDetail() {
-  const { id } = useParams<{ id: string }>()
+  const { slug } = useParams<{ slug: string }>()
+  const id = slug  // backend supports both slug and ObjectId lookup
   const { addToCart } = useCart()
 
   const [product, setProduct] = useState<Product | null>(null)
@@ -277,11 +278,11 @@ export function ProductDetail() {
       <Helmet>
         <title>{seoTitle}</title>
         <meta name="description" content={seoDesc.slice(0, 160)} />
-        <link rel="canonical" href={`https://rudrashilla.com/product/${product.id}`} />
+        <link rel="canonical" href={`https://rudrashilla.com/product/${product.slug ?? product.id}`} />
         <meta property="og:title" content={seoTitle} />
         <meta property="og:description" content={seoDesc.slice(0, 160)} />
         <meta property="og:image" content={product.image} />
-        <meta property="og:url" content={`https://rudrashilla.com/product/${product.id}`} />
+        <meta property="og:url" content={`https://rudrashilla.com/product/${product.slug ?? product.id}`} />
         <meta property="og:type" content="product" />
         <script type="application/ld+json">{JSON.stringify(productSchema)}</script>
       </Helmet>

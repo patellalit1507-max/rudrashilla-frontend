@@ -63,7 +63,7 @@ export function MiniCart() {
                 >
                   {/* Thumbnail */}
                   <Link
-                    to={`/product/${product.id}`}
+                    to={`/product/${product.slug ?? product.id}`}
                     onClick={close}
                     className="shrink-0"
                   >
@@ -77,7 +77,7 @@ export function MiniCart() {
                   {/* Info */}
                   <div className="flex min-w-0 flex-1 flex-col gap-1">
                     <Link
-                      to={`/product/${product.id}`}
+                      to={`/product/${product.slug ?? product.id}`}
                       onClick={close}
                       className="truncate text-sm font-medium hover:underline"
                     >
