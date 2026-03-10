@@ -37,19 +37,6 @@
     <priority>0.8</priority>
   </url>
 
-  <!-- New Arrivals -->
-  <url>
-    <loc>https://rudrashilla.com/category/new</loc>
-    <changefreq>daily</changefreq>
-    <priority>0.7</priority>
-  </url>
-
-  <!-- Sale -->
-  <url>
-    <loc>https://rudrashilla.com/category/sale</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.6</priority>
-  </url>
 
   <!-- Individual product pages -->
   <url>
