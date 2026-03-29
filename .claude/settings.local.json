@@ -7,7 +7,19 @@
       "Bash(npm run build:*)",
       "Bash(node scripts/generate-og-image.mjs)",
       "Bash(ping -n 1 github.com)",
-      "Bash(GIT_EDITOR=true git rebase --continue)"
+      "Bash(GIT_EDITOR=true git rebase --continue)",
+      "Bash(grep -n \"price\\\\|$\\\\|₹\\\\|currency\" c:/Users/ASUS/rudrashilla-frontend/src/components/product/ProductCard.tsx)",
+      "Bash(grep -n \"price\\\\|$\\\\|₹\" c:/Users/ASUS/rudrashilla-frontend/src/pages/ProductDetail.tsx)",
+      "Bash(grep -n \"$\\\\|toFixed\\\\|price\" c:/Users/ASUS/rudrashilla-frontend/src/pages/ProductDetail.tsx)",
+      "Bash(grep -i \"$\\\\|toFixed\\\\|₹\")",
+      "Bash(grep -n \"₹\\\\|$\" c:/Users/ASUS/rudrashilla-frontend/src/components/product/ProductCard.tsx)",
+      "Bash(node scripts/fix-enquiry.cjs)",
+      "Bash(sed -n '112,132p' src/pages/ProductDetail.tsx)",
+      "Bash(node scripts/wire-order-email.cjs)",
+      "Bash(grep -n \"$\\\\|₹\\\\|toFixed\\\\|toLocale\" c:/Users/ASUS/rudrashilla-frontend/src/pages/Cart.tsx)",
+      "Bash(grep -rn \"$\\\\|toFixed\" c:/Users/ASUS/rudrashilla-frontend/src/components/cart/)",
+      "Read(//c/Users/ASUS/rudrashilla-backend/**)",
+      "Bash(npx tsx scripts/add-slugs.ts)"
     ]
   }
 }
