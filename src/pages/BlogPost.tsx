@@ -4,6 +4,24 @@ import { ChevronRight, Clock } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { BLOG_POSTS } from '@/data/blogs'
 
+// Renders [text](/path) in blog body text as internal links
+function renderWithLinks(text: string) {
+  const parts = text.split(/(\[[^\]]+\]\([^)]+\))/g)
+  return parts.map((part, i) => {
+    const match = part.match(/^\[([^\]]+)\]\(([^)]+)\)$/)
+    if (!match) return part
+    return (
+      <Link
+        key={i}
+        to={match[2]}
+        className="font-medium text-primary underline underline-offset-2 hover:text-primary/80"
+      >
+        {match[1]}
+      </Link>
+    )
+  })
+}
+
 export function BlogPost() {
   const { slug } = useParams<{ slug: string }>()
   const post = BLOG_POSTS.find((p) => p.slug === slug)
@@ -74,13 +92,36 @@ export function BlogPost() {
             <div className="space-y-3">
               {section.body.split('\n\n').map((para, j) => (
                 <p key={j} className="leading-relaxed text-foreground/85">
-                  {para}
+                  {renderWithLinks(para)}
                 </p>
               ))}
             </div>
           </section>
         ))}
       </article>
+
+      {/* Related articles — internal linking for SEO */}
+      {post.related && post.related.length > 0 && (
+        <div className="mt-12 border-t pt-8">
+          <h2 className="mb-4 text-lg font-semibold">Related Articles</h2>
+          <ul className="space-y-2">
+            {post.related.map((relSlug) => {
+              const rel = BLOG_POSTS.find((p) => p.slug === relSlug)
+              if (!rel) return null
+              return (
+                <li key={relSlug}>
+                  <Link
+                    to={`/blog/${rel.slug}`}
+                    className="text-primary underline underline-offset-2 hover:text-primary/80"
+                  >
+                    {rel.title}
+                  </Link>
+                </li>
+              )
+            })}
+          </ul>
+        </div>
+      )}
 
       {/* CTA */}
       <div className="mt-12 rounded-xl border border-border bg-muted/40 p-6 text-center">

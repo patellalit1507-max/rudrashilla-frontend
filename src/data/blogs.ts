@@ -7,6 +7,8 @@ export interface BlogPost {
   readTime: string
   sections: { heading?: string; body: string }[]
   cta: { label: string; to: string }
+  /** Slugs of related posts, rendered as internal links at the end of the article */
+  related?: string[]
 }
 
 export const BLOG_POSTS: BlogPost[] = [
@@ -57,10 +59,17 @@ Each natural Shivling is unique — no two are identical, which adds to their sp
 4. Natural markings: Organic patterns or lines — never painted.
 5. Cool to touch: Genuine Narmada stones remain cool even in warm weather.
 
-At Rudrashilla, every Shivling is sourced directly from certified collectors on the banks of Maa Narmada River and verified for authenticity before listing.`,
+For the complete set of authenticity checks, read our detailed guide on [how to identify an original Narmadeshwar Shivling](/blog/how-to-identify-original-narmadeshwar-shivling).
+
+At Rudrashilla, every [Shivling](/category/shivling) is sourced directly from certified collectors on the banks of Maa Narmada River and verified for authenticity before listing.`,
       },
     ],
     cta: { label: 'Shop Narmadeshwar Shivling Collection', to: '/category/shivling' },
+    related: [
+      'how-to-identify-original-narmadeshwar-shivling',
+      'benefits-of-narmadeshwar-shivling',
+      'why-narmada-river-stones-are-sacred',
+    ],
   },
 
   {
@@ -112,6 +121,11 @@ At Rudrashilla, every Shivling is sourced directly from certified collectors on 
       },
     ],
     cta: { label: 'Browse Shivling Collection', to: '/category/shivling' },
+    related: [
+      'what-is-narmadeshwar-shivling',
+      'how-to-do-shivling-abhishek-at-home',
+      'how-to-identify-original-narmadeshwar-shivling',
+    ],
   },
 
   {
@@ -123,7 +137,7 @@ At Rudrashilla, every Shivling is sourced directly from certified collectors on 
     readTime: '5 min read',
     sections: [
       {
-        body: `As demand for Narmadeshwar Shivlings has grown, so has the supply of counterfeit stones in the market. Machine-polished river stones, painted basalt, and even plastic replicas are sold as authentic Narmada Shivlings. Here are seven reliable tests to identify a genuine Narmadeshwar Shivling.`,
+        body: `As demand for Narmadeshwar Shivlings has grown, so has the supply of counterfeit stones in the market. Machine-polished river stones, painted basalt, and even plastic replicas are sold as authentic Narmada Shivlings. Here are seven reliable tests to identify a genuine Narmadeshwar Shivling. Every stone in our [original Narmadeshwar Shivling collection](/category/shivling) passes all seven of these tests.`,
       },
       {
         heading: '1. The Texture Test',
@@ -151,10 +165,17 @@ At Rudrashilla, every Shivling is sourced directly from certified collectors on 
       },
       {
         heading: '7. Buy from a Trusted Source',
-        body: `The most reliable way to ensure authenticity is to purchase from a verified seller who sources directly from the Narmada River belt. At Rudrashilla, every Narmadeshwar Shivling is sourced directly from certified collectors and verified before listing. Each stone comes with a certificate of authenticity and its point of origin along the Narmada River.`,
+        body: `The most reliable way to ensure authenticity is to purchase from a verified seller who sources directly from the Narmada River belt. At Rudrashilla, every [Narmadeshwar Shivling](/category/shivling) is sourced directly from certified collectors and verified before listing. Each stone comes with a certificate of authenticity and its point of origin along the Narmada River.
+
+Genuine stones also have a natural cost floor — if a price looks too good to be true, it usually is. To know what an authentic stone should cost at each size, see our [Narmadeshwar Shivling price guide](/blog/buy-shivling-online-india). And if you are setting up home worship, pair your Shivling with a matching [Jaladhari](/category/jaladhari).`,
       },
     ],
     cta: { label: 'Shop Authentic Narmadeshwar Shivling', to: '/category/shivling' },
+    related: [
+      'what-is-narmadeshwar-shivling',
+      'buy-shivling-online-india',
+      'benefits-of-narmadeshwar-shivling',
+    ],
   },
 
   {
@@ -226,14 +247,19 @@ Close the puja with a moment of silent meditation and gratitude.`,
         heading: 'What You Need for a Complete Home Puja Setup',
         body: `For a proper Shivling abhishek setup at home, you need three key items:
 
-1. Narmadeshwar Shivling — the sacred stone itself
-2. Jaladhari — the base vessel that holds the Shivling and channels the abhishek fluid
-3. Abhishek Patra — the pouring vessel used to bathe the Shivling
+1. [Narmadeshwar Shivling](/category/shivling) — the sacred stone itself
+2. [Jaladhari](/category/jaladhari) — the base vessel that holds the Shivling and channels the abhishek fluid
+3. [Abhishek Patra](/category/abhishek-patra) — the pouring vessel used to bathe the Shivling
 
 At Rudrashilla, you can find all three items sourced from authentic origins and available for home delivery across India.`,
       },
     ],
     cta: { label: 'Shop Abhishek Puja Set', to: '/category/abhishek-patra' },
+    related: [
+      'what-is-jaladhari-for-shivling',
+      'benefits-of-narmadeshwar-shivling',
+      'how-to-identify-original-narmadeshwar-shivling',
+    ],
   },
 
   {
@@ -289,6 +315,11 @@ With proper care, a Narmadeshwar Shivling lasts a lifetime — and beyond, as a 
       },
     ],
     cta: { label: 'Explore Narmadeshwar Shivling Collection', to: '/category/shivling' },
+    related: [
+      'what-is-narmadeshwar-shivling',
+      'how-to-identify-original-narmadeshwar-shivling',
+      'nandi-shivling-significance',
+    ],
   },
 
   {
@@ -308,7 +339,7 @@ With proper care, a Narmadeshwar Shivling lasts a lifetime — and beyond, as a 
       },
       {
         heading: 'What is the Price of Narmadeshwar Shivling?',
-        body: 'Narmadeshwar Shivling price varies by size:\n\nSmall (2–4 inches): ₹200 – ₹800\nMedium (4–6 inches): ₹800 – ₹2,500\nLarge (6–9 inches): ₹2,500 – ₹8,000\nExtra Large (9+ inches): ₹8,000 and above\n\nShivlings with rare markings (Nandi, Trishul, Ardhnareshwar) are priced higher. Beware of suspiciously low prices — genuine Narmada stones have a natural cost floor.',
+        body: 'Narmadeshwar Shivling price varies by size:\n\nSmall (2–4 inches): ₹200 – ₹800\nMedium (4–6 inches): ₹800 – ₹2,500\nLarge (6–9 inches): ₹2,500 – ₹8,000\nExtra Large (9+ inches): ₹8,000 and above\n\nShivlings with rare markings (Nandi, Trishul, Ardhnareshwar) are priced higher. Beware of suspiciously low prices — genuine Narmada stones have a natural cost floor. Browse current prices in our [Narmadeshwar Shivling collection](/category/shivling).',
       },
       {
         heading: 'How to Choose the Right Size',
@@ -316,7 +347,7 @@ With proper care, a Narmadeshwar Shivling lasts a lifetime — and beyond, as a 
       },
       {
         heading: 'What to Check Before Buying Online',
-        body: '1. Source: Seller must state the Shivling is from the Narmada River specifically.\n2. Photos: Real photography showing texture and natural imperfections — not stock images.\n3. Return policy: Trustworthy sellers offer returns if not as described.\n4. Reviews: Look for verified buyers mentioning weight, texture, and authenticity.\n5. Certificate: Premium sellers provide origin certificates.',
+        body: '1. Source: Seller must state the Shivling is from the Narmada River specifically.\n2. Photos: Real photography showing texture and natural imperfections — not stock images.\n3. Return policy: Trustworthy sellers offer returns if not as described.\n4. Reviews: Look for verified buyers mentioning weight, texture, and authenticity.\n5. Certificate: Premium sellers provide origin certificates.\n\nOnce your Shivling arrives, verify it yourself using our guide on [how to identify an original Narmadeshwar Shivling](/blog/how-to-identify-original-narmadeshwar-shivling).',
       },
       {
         heading: 'Why Buy from Rudrashilla?',
@@ -324,6 +355,11 @@ With proper care, a Narmadeshwar Shivling lasts a lifetime — and beyond, as a 
       },
     ],
     cta: { label: 'Shop Narmadeshwar Shivling — All Sizes', to: '/category/shivling' },
+    related: [
+      'how-to-identify-original-narmadeshwar-shivling',
+      'what-is-narmadeshwar-shivling',
+      'what-is-jaladhari-for-shivling',
+    ],
   },
 
   {
@@ -351,10 +387,15 @@ With proper care, a Narmadeshwar Shivling lasts a lifetime — and beyond, as a 
       },
       {
         heading: 'How to Choose the Right Jaladhari Size',
-        body: 'The Shivling should fit snugly in the Jaladhari central depression. The inner diameter should be approximately 1.5–2x the Shivling base diameter. At Rudrashilla, Shivling and Jaladhari sets are pre-matched for size.',
+        body: 'The Shivling should fit snugly in the Jaladhari central depression. The inner diameter should be approximately 1.5–2x the Shivling base diameter. At Rudrashilla, [Shivling and Jaladhari sets](/category/jaladhari) are pre-matched for size. If you are still choosing your stone, start with our [original Narmadeshwar Shivling collection](/category/shivling).',
       },
     ],
     cta: { label: 'Shop Jaladhari Collection', to: '/category/jaladhari' },
+    related: [
+      'how-to-do-shivling-abhishek-at-home',
+      'what-is-narmadeshwar-shivling',
+      'buy-shivling-online-india',
+    ],
   },
 
   {
@@ -386,5 +427,10 @@ With proper care, a Narmadeshwar Shivling lasts a lifetime — and beyond, as a 
       },
     ],
     cta: { label: 'Explore Narmadeshwar Shivling Collection', to: '/category/shivling' },
+    related: [
+      'why-narmada-river-stones-are-sacred',
+      'what-is-narmadeshwar-shivling',
+      'how-to-identify-original-narmadeshwar-shivling',
+    ],
   },
 ]

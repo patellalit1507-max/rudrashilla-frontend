@@ -49,13 +49,13 @@ export function Home() {
 
   const helmetTitle = searchQuery
     ? `Search: ${searchQuery} | Rudrashilla`
-    : 'Rudrashilla – Authentic Narmadeshwar Shivling | Buy Original Narmada Shivling Online'
+    : 'Narmadeshwar Shivling – Buy Original Narmadeshwar Shivling Online at Best Price | Rudrashilla'
 
   return (
     <div className="flex flex-col gap-6 pb-16">
       <Helmet>
         <title>{helmetTitle}</title>
-        <meta name="description" content="Buy authentic Narmadeshwar Shivling from Maa Narmada River. Shop Jaladhari, Abhishek Patra, Trishul. 100% original. Pan-India shipping." />
+        <meta name="description" content="Buy 100% original Narmadeshwar Shivling from Maa Narmada River — price from ₹200. Black & natural Shivling, Jaladhari, Abhishek Patra, Trishul. Pan-India shipping." />
         <link rel="canonical" href="https://rudrashilla.com/" />
       </Helmet>
       {/* Hero Banner — hide when searching */}
@@ -144,6 +144,60 @@ export function Home() {
         <ProductGrid products={products} loading={loading} />
       </section>
 
+      {/* SEO content + internal links — hidden when searching */}
+      {!searchQuery && (
+        <section className="container mx-auto max-w-screen-2xl px-4 md:px-6">
+          <div className="mt-8 border-t pt-10">
+            <h2 className="mb-4 text-xl font-semibold md:text-2xl">
+              Original Narmadeshwar Shivling for Home — Direct from Maa Narmada
+            </h2>
+            <div className="space-y-4 text-sm leading-relaxed text-muted-foreground md:text-base">
+              <p>
+                Rudrashilla brings you{' '}
+                <Link to="/category/shivling" className="font-medium text-primary underline underline-offset-2 hover:text-primary/80">
+                  original Narmadeshwar Shivling
+                </Link>{' '}
+                sourced directly from certified collectors on the banks of the sacred Narmada River.
+                Every stone — from the classic brown-banded Banalinga to the rare black Narmadeshwar
+                Shivling — is naturally formed, self-consecrated (swayambhu), and ready for home puja
+                without any special ceremony.
+              </p>
+              <p>
+                Narmadeshwar Shivling price starts at ₹200 for small 2–4 inch stones ideal for home
+                temples, going up to ₹8,000+ for large Shivlings with rare natural markings. Read our{' '}
+                <Link to="/blog/buy-shivling-online-india" className="font-medium text-primary underline underline-offset-2 hover:text-primary/80">
+                  Narmadeshwar Shivling price &amp; buying guide
+                </Link>{' '}
+                to choose the right size, and learn{' '}
+                <Link to="/blog/how-to-identify-original-narmadeshwar-shivling" className="font-medium text-primary underline underline-offset-2 hover:text-primary/80">
+                  how to identify an original Narmadeshwar Shivling
+                </Link>{' '}
+                with seven simple authenticity tests.
+              </p>
+              <p>
+                Complete your puja setup with a matching{' '}
+                <Link to="/category/jaladhari" className="font-medium text-primary underline underline-offset-2 hover:text-primary/80">
+                  Jaladhari
+                </Link>
+                ,{' '}
+                <Link to="/category/abhishek-patra" className="font-medium text-primary underline underline-offset-2 hover:text-primary/80">
+                  Abhishek Patra
+                </Link>{' '}
+                and{' '}
+                <Link to="/category/trishul" className="font-medium text-primary underline underline-offset-2 hover:text-primary/80">
+                  Trishul
+                </Link>
+                . New to Shivling worship? Start with our step-by-step guide on{' '}
+                <Link to="/blog/how-to-do-shivling-abhishek-at-home" className="font-medium text-primary underline underline-offset-2 hover:text-primary/80">
+                  how to do Shivling abhishek at home
+                </Link>
+                .
+              </p>
+            </div>
+          </div>
+        </section>
+      )}
+
       {/* FAQ Section — SEO rich results + helpful for users */}
       {!searchQuery && (
         <section className="container mx-auto max-w-screen-2xl px-4 md:px-6 pb-4">
@@ -182,6 +236,11 @@ export function Home() {
                   "name": "How do I identify an original Narmadeshwar Shivling?",
                   "acceptedAnswer": { "@type": "Answer", "text": "An original Narmadeshwar Shivling is naturally smooth (not artificially polished), feels surprisingly heavy for its size, remains cool to the touch, has a natural elliptical shape, and may have organic markings or patterns. It should never have painted markings or machine-cut edges." }
                 },
+                {
+                  "@type": "Question",
+                  "name": "What is a black Narmadeshwar Shivling?",
+                  "acceptedAnswer": { "@type": "Answer", "text": "A black Narmadeshwar Shivling is a naturally dark-coloured Narmada river stone, formed from fine-grained basalt. The deep black or dark brown colour is completely natural — never painted or dyed. Black Narmadeshwar Shivlings are as sacred as the classic brown-banded ones and are especially popular for home temples." }
+                },
               ]
             })}</script>
           </Helmet>
@@ -195,6 +254,7 @@ export function Home() {
                 { q: 'What is a Jaladhari and why do I need it?', a: 'A Jaladhari is the base vessel that holds the Shivling during puja and collects the abhishek fluid. The spout should always face north. No Shivling puja is complete without a Jaladhari.' },
                 { q: 'Is Narmadeshwar Shivling good for home worship?', a: 'Yes — it is the most recommended Shivling for home temples. No consecration needed, suitable for all family members, and excellent for Vastu when placed in the northeast corner of the puja room.' },
                 { q: 'How to identify original Narmadeshwar Shivling?', a: 'Authentic Shivlings are naturally smooth, feel heavy for their size, stay cool to the touch, have a natural elliptical shape, and show organic markings. Avoid stones with painted markings or machine-cut edges.' },
+                { q: 'What is a black Narmadeshwar Shivling?', a: 'A naturally dark Narmada stone formed from fine-grained basalt. The black colour is completely natural — never painted. Black Narmadeshwar Shivlings are equally sacred and very popular for home temples.' },
               ].map(({ q, a }) => (
                 <div key={q} className="rounded-lg border bg-muted/30 p-4">
                   <h3 className="font-medium text-sm md:text-base">{q}</h3>
