@@ -10,6 +10,8 @@ export interface PlaceOrderResult {
 export interface OrderForm {
   name: string
   phone: string
+  dialCode?: string
+  country?: string
   addressLine1: string
   addressLine2: string
   city: string
@@ -21,13 +23,18 @@ export async function placeOrder(form: OrderForm, items: CartItem[]): Promise<Pl
   return apiFetch<PlaceOrderResult>('/orders', {
     method: 'POST',
     body: JSON.stringify({
-      customer: { name: form.name, phone: form.phone },
+      customer: {
+        name: form.name,
+        phone: form.phone,
+        dialCode: form.dialCode || undefined,
+      },
       address: {
         line1: form.addressLine1,
         line2: form.addressLine2 || undefined,
         city: form.city,
         state: form.state,
         pincode: form.pincode,
+        country: form.country || 'India',
       },
       items: items.map((item) => ({
         productId: item.product.id,

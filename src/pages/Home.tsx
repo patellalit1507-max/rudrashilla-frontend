@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import { Link, useSearchParams, useNavigate } from 'react-router-dom'
 import { Helmet } from 'react-helmet-async'
-import { ArrowRight, X } from 'lucide-react'
+import { ArrowRight, X, Globe } from 'lucide-react'
 import logo from '@/assets/logo/logo.png'
 import { ProductGrid } from '@/components/product/ProductGrid'
 import { Button } from '@/components/ui/button'
@@ -19,6 +19,16 @@ export function Home() {
   const [active, setActive]     = useState<CategoryType>('All')
   const [products, setProducts] = useState<Product[]>([])
   const [loading, setLoading]   = useState(true)
+  const [showShipBanner, setShowShipBanner] = useState(true)
+
+  useEffect(() => {
+    setShowShipBanner(localStorage.getItem('intlShipBannerDismissed') !== '1')
+  }, [])
+
+  function dismissShipBanner() {
+    localStorage.setItem('intlShipBannerDismissed', '1')
+    setShowShipBanner(false)
+  }
 
   useEffect(() => {
     setLoading(true)
@@ -58,6 +68,30 @@ export function Home() {
         <meta name="description" content="Buy 100% original Narmadeshwar Shivling from Maa Narmada River — price from ₹200. Black & natural Shivling, Jaladhari, Abhishek Patra, Trishul. Pan-India shipping." />
         <link rel="canonical" href="https://rudrashilla.com/" />
       </Helmet>
+
+      {/* International shipping announcement — dismissible */}
+      {!searchQuery && showShipBanner && (
+        <div className="bg-primary text-primary-foreground">
+          <div className="container mx-auto flex max-w-screen-2xl items-center gap-3 px-4 py-2.5 md:px-6">
+            <Globe className="size-4 shrink-0" />
+            <p className="flex-1 text-center text-xs font-medium sm:text-sm">
+              We now ship worldwide — authentic Narmadeshwar Shivling delivered to the USA, UK, Canada,
+              Australia &amp; Europe via DHL/FedEx.{' '}
+              <Link to="/international-shipping" className="underline underline-offset-2 hover:opacity-90">
+                Learn more
+              </Link>
+            </p>
+            <button
+              onClick={dismissShipBanner}
+              aria-label="Dismiss international shipping banner"
+              className="shrink-0 rounded-full p-1 transition-colors hover:bg-primary-foreground/15"
+            >
+              <X className="size-4" />
+            </button>
+          </div>
+        </div>
+      )}
+
       {/* Hero Banner — hide when searching */}
       {!searchQuery && (
         <section id="hero-banner" className="bg-muted/40">

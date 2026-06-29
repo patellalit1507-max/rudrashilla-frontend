@@ -2,8 +2,18 @@ import { Link } from 'react-router-dom'
 
 const LINKS = {
   Shop:    ['New Arrivals', 'Shivling', 'Jaladhari', 'Trishul', 'Abhishek Patra', 'Sale'],
-  Help:    ['Shipping & Returns', 'Size Guide', 'FAQ', 'Contact Us', 'Track Order'],
+  Help:    ['International Shipping', 'Shipping & Returns', 'Size Guide', 'FAQ', 'Contact Us', 'Track Order'],
   Company: ['About Us', 'Careers', 'Press', 'Sustainability', 'Privacy Policy'],
+}
+
+// Map known labels to real routes; everything else falls back to '#'.
+const HREFS: Record<string, string> = {
+  'International Shipping': '/international-shipping',
+  Shivling: '/category/shivling',
+  Jaladhari: '/category/jaladhari',
+  Trishul: '/category/trishul',
+  'Abhishek Patra': '/category/abhishek-patra',
+  FAQ: '/#faq',
 }
 
 export function Footer() {
@@ -18,7 +28,7 @@ export function Footer() {
                 {items.map((item) => (
                   <li key={item}>
                     <Link
-                      to="#"
+                      to={HREFS[item] ?? '#'}
                       className="transition-colors hover:text-foreground"
                     >
                       {item}

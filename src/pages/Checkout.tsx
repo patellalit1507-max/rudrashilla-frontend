@@ -9,6 +9,7 @@ import { sendOrderEmail } from '@/services/notificationService'
 
 interface CheckoutForm {
   name: string
+  country: string
   phone: string
   addressLine1: string
   addressLine2: string
@@ -17,8 +18,35 @@ interface CheckoutForm {
   pincode: string
 }
 
+interface CountryConfig {
+  name: string
+  dial: string
+  postalLabel: string
+  postalPlaceholder: string
+  regionLabel: string
+  regionPlaceholder: string
+}
+
+// India first (default), then the destinations advertised on the International Shipping page.
+const COUNTRIES: CountryConfig[] = [
+  { name: 'India',                dial: '+91',  postalLabel: 'Pincode',      postalPlaceholder: '400001',   regionLabel: 'State',             regionPlaceholder: 'Maharashtra' },
+  { name: 'United States',        dial: '+1',   postalLabel: 'ZIP Code',     postalPlaceholder: '10001',    regionLabel: 'State',             regionPlaceholder: 'New York' },
+  { name: 'United Kingdom',       dial: '+44',  postalLabel: 'Postcode',     postalPlaceholder: 'SW1A 1AA', regionLabel: 'County',            regionPlaceholder: 'Greater London' },
+  { name: 'Canada',               dial: '+1',   postalLabel: 'Postal Code',  postalPlaceholder: 'M5H 2N2',  regionLabel: 'Province',          regionPlaceholder: 'Ontario' },
+  { name: 'Australia',            dial: '+61',  postalLabel: 'Postcode',     postalPlaceholder: '2000',     regionLabel: 'State',             regionPlaceholder: 'New South Wales' },
+  { name: 'New Zealand',          dial: '+64',  postalLabel: 'Postcode',     postalPlaceholder: '6011',     regionLabel: 'Region',            regionPlaceholder: 'Wellington' },
+  { name: 'United Arab Emirates', dial: '+971', postalLabel: 'PO Box',       postalPlaceholder: '00000',    regionLabel: 'Emirate',           regionPlaceholder: 'Dubai' },
+  { name: 'Singapore',            dial: '+65',  postalLabel: 'Postal Code',  postalPlaceholder: '238801',   regionLabel: 'Region',            regionPlaceholder: 'Central' },
+  { name: 'Germany',              dial: '+49',  postalLabel: 'Postal Code',  postalPlaceholder: '10115',    regionLabel: 'State',             regionPlaceholder: 'Berlin' },
+  { name: 'France',               dial: '+33',  postalLabel: 'Postal Code',  postalPlaceholder: '75001',    regionLabel: 'Region',            regionPlaceholder: 'Île-de-France' },
+  { name: 'Other (Worldwide)',    dial: '',     postalLabel: 'Postal / ZIP Code', postalPlaceholder: 'Postal code', regionLabel: 'State / Province / Region', regionPlaceholder: 'State / Province' },
+]
+
+const COUNTRY_MAP = Object.fromEntries(COUNTRIES.map((c) => [c.name, c]))
+
 const EMPTY_FORM: CheckoutForm = {
   name: '',
+  country: 'India',
   phone: '',
   addressLine1: '',
   addressLine2: '',
@@ -59,6 +87,8 @@ export function Checkout() {
   const [apiError, setApiError] = useState<string | null>(null)
 
   const items = state.items
+  const country = COUNTRY_MAP[form.country] ?? COUNTRIES[0]
+  const isIndia = form.country === 'India'
 
   // ── If cart is empty redirect hint ────────────────────────────────────────
   if (items.length === 0 && !placed) {
@@ -76,6 +106,7 @@ export function Checkout() {
 
   // ── Order placed success ───────────────────────────────────────────────────
   if (placed) {
+    const dialPrefix = country.dial ? `${country.dial} ` : ''
     return (
       <div className="container mx-auto max-w-screen-sm px-4 py-20 text-center">
         <div className="flex flex-col items-center gap-4">
@@ -83,13 +114,18 @@ export function Checkout() {
           <h1 className="text-2xl font-bold">Order Placed!</h1>
           <p className="text-muted-foreground">
             Thank you, <strong>{form.name}</strong>. We've received your order and will contact you
-            at <strong>+91 {form.phone}</strong> to confirm.
+            at <strong>{dialPrefix}{form.phone}</strong> to confirm.
           </p>
           <p className="text-sm text-muted-foreground">
             Delivery to: {form.addressLine1}
             {form.addressLine2 ? `, ${form.addressLine2}` : ''}, {form.city}, {form.state} —{' '}
-            {form.pincode}
+            {form.pincode}, {form.country}
           </p>
+          {!isIndia && (
+            <p className="text-sm text-muted-foreground">
+              We&rsquo;ll confirm international shipping costs and delivery timeline before dispatch.
+            </p>
+          )}
           <Button className="mt-4" asChild>
             <Link to="/">Continue Shopping</Link>
           </Button>
@@ -102,13 +138,19 @@ export function Checkout() {
   function validate(): boolean {
     const e: Partial<CheckoutForm> = {}
     if (!form.name.trim()) e.name = 'Name is required'
+
+    const digits = form.phone.replace(/[\s\-()]/g, '')
     if (!form.phone.trim()) e.phone = 'Phone number is required'
-    else if (!/^[6-9]\d{9}$/.test(form.phone.replace(/[\s\-()]/g, '')))
-      e.phone = 'Enter a valid 10-digit mobile number'
+    else if (isIndia) {
+      if (!/^[6-9]\d{9}$/.test(digits)) e.phone = 'Enter a valid 10-digit mobile number'
+    } else if (!/^\d{6,15}$/.test(digits)) {
+      e.phone = 'Enter a valid phone number'
+    }
+
     if (!form.addressLine1.trim()) e.addressLine1 = 'Address is required'
     if (!form.city.trim())         e.city = 'City is required'
-    if (!form.state.trim())        e.state = 'State is required'
-    if (!form.pincode.trim())      e.pincode = 'Pincode is required'
+    if (!form.state.trim())        e.state = `${country.regionLabel} is required`
+    if (!form.pincode.trim())      e.pincode = `${country.postalLabel} is required`
     setErrors(e)
     return Object.keys(e).length === 0
   }
@@ -119,7 +161,7 @@ export function Checkout() {
     setSubmitting(true)
     setApiError(null)
     try {
-      await placeOrder(form, items)
+      await placeOrder({ ...form, dialCode: country.dial }, items)
       sendOrderEmail({
         items: items.map((i) => ({
           name: i.product.name,
@@ -139,7 +181,7 @@ export function Checkout() {
   }
 
   function set(field: keyof CheckoutForm) {
-    return (e: React.ChangeEvent<HTMLInputElement>) => {
+    return (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
       setForm((f) => ({ ...f, [field]: e.target.value }))
       if (errors[field]) setErrors((err) => ({ ...err, [field]: undefined }))
     }
@@ -182,12 +224,12 @@ export function Checkout() {
                 <Field label="Phone / WhatsApp" required>
                   <div className="flex">
                     <span className="flex items-center rounded-l-md border border-r-0 border-input bg-muted px-3 text-sm text-muted-foreground select-none">
-                      +91
+                      {country.dial || '+'}
                     </span>
                     <input
                       type="tel"
-                      placeholder="98765 43210"
-                      maxLength={10}
+                      placeholder={isIndia ? '98765 43210' : '7700 900000'}
+                      maxLength={isIndia ? 10 : 18}
                       value={form.phone}
                       onChange={set('phone')}
                       className={`${INPUT_CLS} flex-1 rounded-l-none`}
@@ -203,6 +245,19 @@ export function Checkout() {
             {/* Delivery address */}
             <section className="flex flex-col gap-4">
               <h2 className="font-semibold text-base">Delivery Address</h2>
+
+              <Field label="Country" required>
+                <select
+                  value={form.country}
+                  onChange={set('country')}
+                  className={INPUT_CLS}
+                >
+                  {COUNTRIES.map((c) => (
+                    <option key={c.name} value={c.name}>{c.name}</option>
+                  ))}
+                </select>
+              </Field>
+
               <div className="grid gap-4 sm:grid-cols-2">
                 <Field label="Address Line 1" required>
                   <input
@@ -230,7 +285,7 @@ export function Checkout() {
                 <Field label="City" required>
                   <input
                     type="text"
-                    placeholder="Mumbai"
+                    placeholder={isIndia ? 'Mumbai' : 'City'}
                     value={form.city}
                     onChange={set('city')}
                     className={INPUT_CLS}
@@ -238,10 +293,10 @@ export function Checkout() {
                   {errors.city && <p className="text-xs text-destructive">{errors.city}</p>}
                 </Field>
 
-                <Field label="State" required>
+                <Field label={country.regionLabel} required>
                   <input
                     type="text"
-                    placeholder="Maharashtra"
+                    placeholder={country.regionPlaceholder}
                     value={form.state}
                     onChange={set('state')}
                     className={INPUT_CLS}
@@ -249,10 +304,10 @@ export function Checkout() {
                   {errors.state && <p className="text-xs text-destructive">{errors.state}</p>}
                 </Field>
 
-                <Field label="Pincode" required>
+                <Field label={country.postalLabel} required>
                   <input
                     type="text"
-                    placeholder="400001"
+                    placeholder={country.postalPlaceholder}
                     value={form.pincode}
                     onChange={set('pincode')}
                     className={INPUT_CLS}
@@ -308,13 +363,25 @@ export function Checkout() {
                 </div>
                 <div className="flex justify-between text-muted-foreground">
                   <span>Shipping</span>
-                  <span className="text-emerald-600">Free</span>
+                  {isIndia ? (
+                    <span className="text-emerald-600">Free</span>
+                  ) : (
+                    <span>Confirmed before dispatch</span>
+                  )}
                 </div>
                 <div className="flex justify-between font-semibold text-base mt-1">
                   <span>Total</span>
                   <span>₹{totalPrice.toLocaleString('en-IN')}</span>
                 </div>
               </div>
+
+              {!isIndia && (
+                <p className="rounded-md bg-muted/60 px-3 py-2 text-xs text-muted-foreground">
+                  Prices are in INR (₹). For international orders we&rsquo;ll confirm shipping cost and
+                  delivery timeline by WhatsApp/email before dispatch. Any customs duties or import taxes
+                  are set by your country and paid on arrival.
+                </p>
+              )}
 
               {apiError && (
                 <p className="rounded-md bg-destructive/10 px-3 py-2 text-sm text-destructive">
