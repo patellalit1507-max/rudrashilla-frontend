@@ -1,15 +1,28 @@
 import { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
-import { ShoppingBag, Search, Menu, X } from 'lucide-react'
+import { ShoppingBag, Search, Menu, X, ChevronDown } from 'lucide-react'
 import logo from '@/assets/logo/logo.png'
 import { useCart } from '@/contexts/CartContext'
 import { Button } from '@/components/ui/button'
 import { cn } from '@/lib/utils'
 
-const NAV_LINKS = [
-  { label: 'Home',           to: '/' },
-  { label: 'New',            to: '/category/new' },
-  { label: 'Shivling',       to: '/category/shivling' },
+type NavLink = {
+  label: string
+  to: string
+  children?: { label: string; to: string }[]
+}
+
+const NAV_LINKS: NavLink[] = [
+  { label: 'Home',  to: '/' },
+  { label: 'New',   to: '/category/new' },
+  {
+    label: 'Shivling',
+    to: '/category/shivling',
+    children: [
+      { label: 'Home Shivling (2–6 inch)',   to: '/category/home-shivling' },
+      { label: 'Temple Shivling (6 inch+)',  to: '/category/temple-shivling' },
+    ],
+  },
   { label: 'Jaladhari',      to: '/category/jaladhari' },
   { label: 'Trishul',        to: '/category/trishul' },
   { label: 'Abhishek Patra', to: '/category/abhishek-patra' },
@@ -63,15 +76,41 @@ export function Navbar() {
 
           {/* Desktop nav */}
           <nav className="hidden md:flex items-center gap-6 text-sm font-medium">
-            {NAV_LINKS.map(({ label, to }) => (
-              <Link
-                key={to}
-                to={to}
-                className="text-foreground/60 transition-colors hover:text-foreground"
-              >
-                {label}
-              </Link>
-            ))}
+            {NAV_LINKS.map(({ label, to, children }) =>
+              children ? (
+                <div key={to} className="group relative">
+                  <Link
+                    to={to}
+                    className="flex items-center gap-1 text-foreground/60 transition-colors hover:text-foreground"
+                  >
+                    {label}
+                    <ChevronDown className="size-3.5 transition-transform group-hover:rotate-180" />
+                  </Link>
+                  {/* Hover/focus dropdown */}
+                  <div className="invisible absolute left-0 top-full z-50 min-w-56 pt-2 opacity-0 transition-all group-hover:visible group-hover:opacity-100 group-focus-within:visible group-focus-within:opacity-100">
+                    <div className="rounded-lg border border-border bg-background p-1.5 shadow-lg">
+                      {children.map((child) => (
+                        <Link
+                          key={child.to}
+                          to={child.to}
+                          className="block rounded-md px-3 py-2 text-foreground/70 transition-colors hover:bg-accent hover:text-foreground"
+                        >
+                          {child.label}
+                        </Link>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              ) : (
+                <Link
+                  key={to}
+                  to={to}
+                  className="text-foreground/60 transition-colors hover:text-foreground"
+                >
+                  {label}
+                </Link>
+              ),
+            )}
           </nav>
 
           {/* Right actions */}
@@ -111,15 +150,30 @@ export function Navbar() {
         {mobileOpen && (
           <div className="border-t border-border bg-background px-4 py-4 md:hidden">
             <nav className="flex flex-col gap-3 text-sm font-medium">
-              {NAV_LINKS.map(({ label, to }) => (
-                <Link
-                  key={to}
-                  to={to}
-                  className="py-1 text-foreground/70 transition-colors hover:text-foreground"
-                  onClick={() => setMobileOpen(false)}
-                >
-                  {label}
-                </Link>
+              {NAV_LINKS.map(({ label, to, children }) => (
+                <div key={to}>
+                  <Link
+                    to={to}
+                    className="block py-1 text-foreground/70 transition-colors hover:text-foreground"
+                    onClick={() => setMobileOpen(false)}
+                  >
+                    {label}
+                  </Link>
+                  {children && (
+                    <div className="ml-3 mt-2 flex flex-col gap-2 border-l border-border pl-3">
+                      {children.map((child) => (
+                        <Link
+                          key={child.to}
+                          to={child.to}
+                          className="py-0.5 text-foreground/60 transition-colors hover:text-foreground"
+                          onClick={() => setMobileOpen(false)}
+                        >
+                          {child.label}
+                        </Link>
+                      ))}
+                    </div>
+                  )}
+                </div>
               ))}
             </nav>
           </div>

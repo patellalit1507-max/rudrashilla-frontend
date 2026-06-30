@@ -7,6 +7,8 @@ export interface Product {
   image: string
   images?: string[]
   category: string
+  /** For Shivling products: 'home' = 2–6 inch, 'temple' = larger than 6 inch */
+  shivlingType?: 'home' | 'temple'
   rating: number
   reviewCount: number
   badge?: 'sale' | 'new' | 'hot'

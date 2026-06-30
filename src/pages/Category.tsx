@@ -7,7 +7,7 @@ import { fetchProducts } from '@/services/productService'
 import type { Product } from '@/types'
 
 // Map URL slug → display name, API category, SEO title & description
-const SLUG_MAP: Record<string, { label: string; category?: string; sort?: string; seoTitle: string; seoDesc: string; intro?: string }> = {
+const SLUG_MAP: Record<string, { label: string; category?: string; shivlingType?: 'home' | 'temple'; sort?: string; seoTitle: string; seoDesc: string; intro?: string }> = {
   'new': {
     label: 'New Arrivals', sort: 'newest',
     seoTitle: 'New Arrivals – Latest Narmadeshwar Shivling & Puja Items | Rudrashilla',
@@ -18,6 +18,18 @@ const SLUG_MAP: Record<string, { label: string; category?: string; sort?: string
     seoTitle: 'Narmadeshwar Shivling – Buy Original Narmadeshwar Shivling Online at Best Price | Rudrashilla',
     seoDesc: 'Buy 100% original Narmadeshwar Shivling at best price (₹200–₹8,000+). Black & natural Narmada Shivling for home temple, puja and Vastu. Certified authentic, Pan-India shipping.',
     intro: 'Original Narmadeshwar Shivling sourced directly from Maa Narmada River — naturally formed, self-consecrated (swayambhu) and perfect for home temple. Choose from classic brown-banded Banalinga and rare black Narmadeshwar Shivling in sizes from 2 to 9+ inches, with prices starting at ₹200.',
+  },
+  'home-shivling': {
+    label: 'Home Narmadeshwar Shivling', category: 'Shivling', shivlingType: 'home',
+    seoTitle: 'Narmadeshwar Shivling for Home – Small 2 to 6 Inch Shivling for Home Temple | Rudrashilla',
+    seoDesc: 'Buy small Narmadeshwar Shivling (2–6 inch) for home temple and daily puja. Original, self-consecrated Narmada Shivling perfect for home worship. Price from ₹200, Pan-India shipping.',
+    intro: 'Home Narmadeshwar Shivling in compact 2 to 6 inch sizes — the ideal scale for a home temple, puja ghar or office mandir. Each one is naturally formed in Maa Narmada River, self-consecrated (swayambhu) and ready for daily worship. Prices start at ₹200.',
+  },
+  'temple-shivling': {
+    label: 'Temple Narmadeshwar Shivling', category: 'Shivling', shivlingType: 'temple',
+    seoTitle: 'Large Narmadeshwar Shivling for Temple – Big Shivling (6 Inch+) | Rudrashilla',
+    seoDesc: 'Buy large Narmadeshwar Shivling (above 6 inch) for temples and big home mandirs. Original Narmada Shivling with rare natural markings. Certified authentic, Pan-India shipping.',
+    intro: 'Temple-grade Narmadeshwar Shivling larger than 6 inches — a commanding presence for temples, ashrams and large home mandirs. Sourced directly from Maa Narmada River, naturally formed and self-consecrated, many with rare natural markings like Nandi and Trishul impressions.',
   },
   'jaladhari': {
     label: 'Jaladhari', category: 'Jaladhari',
@@ -45,13 +57,17 @@ const SLUG_MAP: Record<string, { label: string; category?: string; sort?: string
 }
 
 // Internal links to supporting guides, shown below the product grid per category
+const SHIVLING_GUIDES = [
+  { label: 'How to Identify an Original Narmadeshwar Shivling — 7 Tests', to: '/blog/how-to-identify-original-narmadeshwar-shivling' },
+  { label: 'Narmadeshwar Shivling Price & Buying Guide', to: '/blog/buy-shivling-online-india' },
+  { label: 'What is Narmadeshwar Shivling? Origin & Significance', to: '/blog/what-is-narmadeshwar-shivling' },
+  { label: '9 Benefits of Keeping Narmadeshwar Shivling at Home', to: '/blog/benefits-of-narmadeshwar-shivling' },
+]
+
 const CATEGORY_GUIDES: Record<string, { label: string; to: string }[]> = {
-  'shivling': [
-    { label: 'How to Identify an Original Narmadeshwar Shivling — 7 Tests', to: '/blog/how-to-identify-original-narmadeshwar-shivling' },
-    { label: 'Narmadeshwar Shivling Price & Buying Guide', to: '/blog/buy-shivling-online-india' },
-    { label: 'What is Narmadeshwar Shivling? Origin & Significance', to: '/blog/what-is-narmadeshwar-shivling' },
-    { label: '9 Benefits of Keeping Narmadeshwar Shivling at Home', to: '/blog/benefits-of-narmadeshwar-shivling' },
-  ],
+  'shivling': SHIVLING_GUIDES,
+  'home-shivling': SHIVLING_GUIDES,
+  'temple-shivling': SHIVLING_GUIDES,
   'jaladhari': [
     { label: 'What is Jaladhari? Complete Guide for Shivling Puja', to: '/blog/what-is-jaladhari-for-shivling' },
     { label: 'How to Do Shivling Abhishek at Home — Step by Step', to: '/blog/how-to-do-shivling-abhishek-at-home' },
@@ -80,12 +96,17 @@ export function Category() {
   useEffect(() => {
     setLoading(true)
     fetchProducts({ category: meta.category, sort: meta.sort, limit: 50 })
-      .then((res) => setProducts(res.products))
+      .then((res) => {
+        const list = meta.shivlingType
+          ? res.products.filter((p) => p.shivlingType === meta.shivlingType)
+          : res.products
+        setProducts(list)
+      })
       .catch(() => setProducts([]))
       .finally(() => setLoading(false))
   }, [slug])
 
-  const canonicalSlug = slug === 'abhishek-patra' ? 'abhishek-patra' : slug
+  const canonicalSlug = slug
 
   return (
     <div className="container mx-auto max-w-screen-2xl px-4 py-8 md:px-6">
