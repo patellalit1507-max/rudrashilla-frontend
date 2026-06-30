@@ -59,25 +59,25 @@ export function Home() {
         <link rel="canonical" href="https://rudrashilla.com/" />
       </Helmet>
 
-      {/* International shipping announcement — always shown */}
+      {/* Worldwide delivery banner + Hero — flush, hidden when searching */}
       {!searchQuery && (
-        <div className="bg-primary text-primary-foreground">
-          <div className="container mx-auto flex max-w-screen-2xl items-center gap-3 px-4 py-2.5 md:px-6">
-            <Globe className="size-4 shrink-0" />
-            <p className="flex-1 text-center text-xs font-medium sm:text-sm">
-              We now ship worldwide — authentic Narmadeshwar Shivling delivered to the USA, UK, Canada,
-              Australia &amp; Europe via DHL/FedEx.{' '}
-              <Link to="/international-shipping" className="underline underline-offset-2 hover:opacity-90">
-                Learn more
-              </Link>
-            </p>
+        <div>
+          {/* International shipping announcement */}
+          <div className="bg-primary text-primary-foreground">
+            <div className="container mx-auto flex max-w-screen-2xl items-center gap-3 px-4 py-2.5 md:px-6">
+              <Globe className="size-4 shrink-0" />
+              <p className="flex-1 text-center text-xs font-medium sm:text-sm">
+                We now ship worldwide — authentic Narmadeshwar Shivling delivered to the USA, UK, Canada,
+                Australia &amp; Europe via DHL/FedEx.{' '}
+                <Link to="/international-shipping" className="underline underline-offset-2 hover:opacity-90">
+                  Learn more
+                </Link>
+              </p>
+            </div>
           </div>
-        </div>
-      )}
 
-      {/* Hero Banner — hide when searching */}
-      {!searchQuery && (
-        <section id="hero-banner" className="bg-muted/40">
+          {/* Hero Banner */}
+          <section id="hero-banner" className="bg-muted/40">
           <div className="container mx-auto max-w-screen-2xl px-4 py-4 md:px-6 md:py-6">
             <div className="flex items-center gap-8 px-6 lg:px-8">
               {/* Text — 60% on desktop, full width on mobile */}
@@ -113,7 +113,8 @@ export function Home() {
               </div>
             </div>
           </div>
-        </section>
+          </section>
+        </div>
       )}
 
       {/* Product grid */}
