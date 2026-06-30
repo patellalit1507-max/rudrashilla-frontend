@@ -19,16 +19,6 @@ export function Home() {
   const [active, setActive]     = useState<CategoryType>('All')
   const [products, setProducts] = useState<Product[]>([])
   const [loading, setLoading]   = useState(true)
-  const [showShipBanner, setShowShipBanner] = useState(true)
-
-  useEffect(() => {
-    setShowShipBanner(localStorage.getItem('intlShipBannerDismissed') !== '1')
-  }, [])
-
-  function dismissShipBanner() {
-    localStorage.setItem('intlShipBannerDismissed', '1')
-    setShowShipBanner(false)
-  }
 
   useEffect(() => {
     setLoading(true)
@@ -69,8 +59,8 @@ export function Home() {
         <link rel="canonical" href="https://rudrashilla.com/" />
       </Helmet>
 
-      {/* International shipping announcement — dismissible */}
-      {!searchQuery && showShipBanner && (
+      {/* International shipping announcement — always shown */}
+      {!searchQuery && (
         <div className="bg-primary text-primary-foreground">
           <div className="container mx-auto flex max-w-screen-2xl items-center gap-3 px-4 py-2.5 md:px-6">
             <Globe className="size-4 shrink-0" />
@@ -81,13 +71,6 @@ export function Home() {
                 Learn more
               </Link>
             </p>
-            <button
-              onClick={dismissShipBanner}
-              aria-label="Dismiss international shipping banner"
-              className="shrink-0 rounded-full p-1 transition-colors hover:bg-primary-foreground/15"
-            >
-              <X className="size-4" />
-            </button>
           </div>
         </div>
       )}
