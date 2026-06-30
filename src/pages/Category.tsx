@@ -95,8 +95,9 @@ export function Category() {
 
   useEffect(() => {
     setLoading(true)
-    fetchProducts({ category: meta.category, sort: meta.sort, limit: 50 })
+    fetchProducts({ category: meta.category, shivlingType: meta.shivlingType, sort: meta.sort, limit: 50 })
       .then((res) => {
+        // Backend filters by shivlingType; client filter is a fallback until it deploys
         const list = meta.shivlingType
           ? res.products.filter((p) => p.shivlingType === meta.shivlingType)
           : res.products
