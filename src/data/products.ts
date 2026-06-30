@@ -106,5 +106,5 @@ export const PRODUCTS: Product[] = [
   },
 ]
 
-export const CATEGORIES = ['All', 'Shivling', 'Jaladhari', 'Trishul', 'Abhishek Patra'] as const
+export const CATEGORIES = ['All', 'Shivling', 'Jaladhari'] as const
 export type CategoryType = (typeof CATEGORIES)[number]

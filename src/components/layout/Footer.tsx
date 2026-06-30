@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom'
 
 const LINKS = {
-  Shop:    ['New Arrivals', 'Home Shivling', 'Temple Shivling', 'Jaladhari', 'Trishul', 'Abhishek Patra', 'Sale'],
+  Shop:    ['New Arrivals', 'Home Shivling', 'Temple Shivling', 'Jaladhari', 'Sale'],
   Help:    ['International Shipping', 'Shipping & Returns', 'Size Guide', 'FAQ', 'Contact Us', 'Track Order'],
   Company: ['About Us', 'Careers', 'Press', 'Sustainability', 'Privacy Policy'],
 }
@@ -13,8 +13,6 @@ const HREFS: Record<string, string> = {
   'Home Shivling': '/category/home-shivling',
   'Temple Shivling': '/category/temple-shivling',
   Jaladhari: '/category/jaladhari',
-  Trishul: '/category/trishul',
-  'Abhishek Patra': '/category/abhishek-patra',
   FAQ: '/#faq',
 }
 

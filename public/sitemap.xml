@@ -37,21 +37,6 @@
     <priority>0.8</priority>
   </url>
 
-  <!-- Abhishek Patra -->
-  <url>
-    <loc>https://rudrashilla.com/category/abhishek-patra</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-
-  <!-- Trishul -->
-  <url>
-    <loc>https://rudrashilla.com/category/trishul</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-
-
   <!-- Individual product pages -->
   <url>
     <loc>https://rudrashilla.com/product/classic-narmadeshwar-shivling</loc>

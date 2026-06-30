@@ -11,7 +11,7 @@ const SLUG_MAP: Record<string, { label: string; category?: string; shivlingType?
   'new': {
     label: 'New Arrivals', sort: 'newest',
     seoTitle: 'New Arrivals – Latest Narmadeshwar Shivling & Puja Items | Rudrashilla',
-    seoDesc: 'Explore the latest Narmadeshwar Shivling, Jaladhari, Abhishek Patra and Trishul arrivals at Rudrashilla. Freshly sourced from Maa Narmada River.',
+    seoDesc: 'Explore the latest Narmadeshwar Shivling and Jaladhari arrivals at Rudrashilla. Freshly sourced from Maa Narmada River.',
   },
   'shivling': {
     label: 'Narmadeshwar Shivling', category: 'Shivling',
@@ -37,22 +37,10 @@ const SLUG_MAP: Record<string, { label: string; category?: string; shivlingType?
     seoDesc: 'Buy original Jaladhari for Shivling puja online. Narmada stone, brass and copper Jaladhari, pre-matched to your Shivling size. Pan-India shipping from Rudrashilla.',
     intro: 'A Jaladhari is the sacred base vessel that holds the Shivling and channels the abhishek fluid through its north-facing spout. No Shivling puja is complete without one. Our Jaladhari are pre-matched in size to our Narmadeshwar Shivlings.',
   },
-  'trishul': {
-    label: 'Trishul', category: 'Trishul',
-    seoTitle: 'Buy Sacred Trishul Online | Original Trishul for Home Temple – Rudrashilla',
-    seoDesc: 'Shop original Trishul for home temple and worship. Authentic brass and panchadhatu Trishul. Buy Trishul online with Pan-India delivery from Rudrashilla.',
-    intro: 'The Trishul — Lord Shiva’s trident — symbolises protection and the destruction of negativity. Place an authentic brass or panchadhatu Trishul beside your Shivling to complete your home temple.',
-  },
-  'abhishek-patra': {
-    label: 'Abhishek Patra', category: 'Abhishek Patra',
-    seoTitle: 'Buy Abhishek Patra Online | Original Puja Abhishek Patra – Rudrashilla',
-    seoDesc: 'Shop authentic Abhishek Patra for daily Shivling puja and rituals. Copper and brass Abhishek Patra available. Buy online with Pan-India shipping.',
-    intro: 'An Abhishek Patra lets you pour water, milk or panchamrit in a slow, steady stream over the Shivling — the traditional way to perform daily abhishek at home.',
-  },
   'sale': {
     label: 'Sale', sort: 'sale',
     seoTitle: 'Sale – Discounted Narmadeshwar Shivling & Puja Items | Rudrashilla',
-    seoDesc: 'Special offers on Narmadeshwar Shivling, Jaladhari, Abhishek Patra and Trishul. Shop authentic puja items at discounted prices. Limited time offers.',
+    seoDesc: 'Special offers on Narmadeshwar Shivling and Jaladhari. Shop authentic puja items at discounted prices. Limited time offers.',
   },
 }
 
@@ -71,14 +59,6 @@ const CATEGORY_GUIDES: Record<string, { label: string; to: string }[]> = {
   'jaladhari': [
     { label: 'What is Jaladhari? Complete Guide for Shivling Puja', to: '/blog/what-is-jaladhari-for-shivling' },
     { label: 'How to Do Shivling Abhishek at Home — Step by Step', to: '/blog/how-to-do-shivling-abhishek-at-home' },
-  ],
-  'abhishek-patra': [
-    { label: 'How to Do Shivling Abhishek at Home — Step by Step', to: '/blog/how-to-do-shivling-abhishek-at-home' },
-    { label: 'What is Jaladhari? Complete Guide for Shivling Puja', to: '/blog/what-is-jaladhari-for-shivling' },
-  ],
-  'trishul': [
-    { label: 'Nandi and Shivling — Sacred Markings on Narmadeshwar Shivling', to: '/blog/nandi-shivling-significance' },
-    { label: 'Why Narmada River Stones Are Sacred', to: '/blog/why-narmada-river-stones-are-sacred' },
   ],
 }
 

@@ -249,12 +249,12 @@ Close the puja with a moment of silent meditation and gratitude.`,
 
 1. [Narmadeshwar Shivling](/category/shivling) — the sacred stone itself
 2. [Jaladhari](/category/jaladhari) — the base vessel that holds the Shivling and channels the abhishek fluid
-3. [Abhishek Patra](/category/abhishek-patra) — the pouring vessel used to bathe the Shivling
+3. Abhishek Patra — the pouring vessel used to bathe the Shivling
 
-At Rudrashilla, you can find all three items sourced from authentic origins and available for home delivery across India.`,
+At Rudrashilla, you can find authentic Narmadeshwar Shivling and Jaladhari for your abhishek setup, available for home delivery across India.`,
       },
     ],
-    cta: { label: 'Shop Abhishek Puja Set', to: '/category/abhishek-patra' },
+    cta: { label: 'Shop Jaladhari', to: '/category/jaladhari' },
     related: [
       'what-is-jaladhari-for-shivling',
       'benefits-of-narmadeshwar-shivling',

@@ -55,7 +55,7 @@ export function Home() {
     <div className="flex flex-col gap-6 pb-16">
       <Helmet>
         <title>{helmetTitle}</title>
-        <meta name="description" content="Buy 100% original Narmadeshwar Shivling from Maa Narmada River — price from ₹200. Black & natural Shivling, Jaladhari, Abhishek Patra, Trishul. Pan-India shipping." />
+        <meta name="description" content="Buy 100% original Narmadeshwar Shivling from Maa Narmada River — price from ₹200. Black & natural Shivling and Jaladhari for home temple & puja. Pan-India shipping." />
         <link rel="canonical" href="https://rudrashilla.com/" />
       </Helmet>
 
@@ -196,14 +196,6 @@ export function Home() {
                 Complete your puja setup with a matching{' '}
                 <Link to="/category/jaladhari" className="font-medium text-primary underline underline-offset-2 hover:text-primary/80">
                   Jaladhari
-                </Link>
-                ,{' '}
-                <Link to="/category/abhishek-patra" className="font-medium text-primary underline underline-offset-2 hover:text-primary/80">
-                  Abhishek Patra
-                </Link>{' '}
-                and{' '}
-                <Link to="/category/trishul" className="font-medium text-primary underline underline-offset-2 hover:text-primary/80">
-                  Trishul
                 </Link>
                 . New to Shivling worship? Start with our step-by-step guide on{' '}
                 <Link to="/blog/how-to-do-shivling-abhishek-at-home" className="font-medium text-primary underline underline-offset-2 hover:text-primary/80">

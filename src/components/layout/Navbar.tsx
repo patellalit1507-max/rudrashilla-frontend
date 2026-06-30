@@ -24,8 +24,6 @@ const NAV_LINKS: NavLink[] = [
     ],
   },
   { label: 'Jaladhari',      to: '/category/jaladhari' },
-  { label: 'Trishul',        to: '/category/trishul' },
-  { label: 'Abhishek Patra', to: '/category/abhishek-patra' },
   { label: 'Sale',           to: '/category/sale' },
   { label: 'Blog',           to: '/blog' },
 ]
@@ -196,7 +194,7 @@ export function Navbar() {
                 autoFocus
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                placeholder="Search Shivling, Trishul, Abhishek Patra…"
+                placeholder="Search Shivling, Jaladhari…"
                 className="w-full rounded-xl border border-border bg-background py-4 pl-12 pr-12 text-base shadow-2xl focus:outline-none focus:ring-2 focus:ring-ring"
               />
               <button
