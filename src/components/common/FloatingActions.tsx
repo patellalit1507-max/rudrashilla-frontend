@@ -1,7 +1,7 @@
 import { Phone } from 'lucide-react'
 
-// TODO: Replace with your actual WhatsApp / phone number (digits only, with country code)
-const PHONE = '919617843787'
+// WhatsApp / phone number (digits only, with country code)
+const PHONE = '917772808081'
 const INSTAGRAM = 'rudrashila_shivling'
 
 export function FloatingActions() {

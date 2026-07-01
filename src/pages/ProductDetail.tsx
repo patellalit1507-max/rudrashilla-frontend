@@ -124,7 +124,7 @@ function EnquiryForm({ productName }: { productName: string }) {
       '',
       'Please share price and availability. Thank you!',
     ].filter(Boolean).join('\n'))
-    window.open('https://wa.me/919617843787?text=' + msg, '_blank', 'noopener,noreferrer')
+    window.open('https://wa.me/917772808081?text=' + msg, '_blank', 'noopener,noreferrer')
     sendEnquiryEmail({ productName, customerName: form.name, customerPhone: form.phone, message: form.message })
     setSent(true)
     setSubmitting(false)

@@ -145,7 +145,7 @@ export function Cart() {
                   '',
                   'Please confirm my order. Thank you!',
                 ].join('\n')
-                window.open(`https://wa.me/919617843787?text=${encodeURIComponent(lines)}`, '_blank', 'noopener,noreferrer')
+                window.open(`https://wa.me/917772808081?text=${encodeURIComponent(lines)}`, '_blank', 'noopener,noreferrer')
                 sendOrderEmail({
                   items: items.map((i) => ({
                     name: i.product.name,
