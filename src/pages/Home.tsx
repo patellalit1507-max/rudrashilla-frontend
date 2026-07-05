@@ -5,6 +5,8 @@ import { ArrowRight, X, Globe } from 'lucide-react'
 import logo from '@/assets/logo/logo.png'
 import { ProductGrid } from '@/components/product/ProductGrid'
 import { ProductSection } from '@/components/product/ProductSection'
+import { TestimonialsSection } from '@/components/home/TestimonialsSection'
+import { CountUp } from '@/components/common/CountUp'
 import { Button } from '@/components/ui/button'
 import { CATEGORIES } from '@/data/products'
 import type { CategoryType } from '@/data/products'
@@ -20,9 +22,11 @@ export function Home() {
   const [active, setActive]     = useState<CategoryType>('All')
   const [products, setProducts] = useState<Product[]>([])
   const [loading, setLoading]   = useState(true)
+  const [showAll, setShowAll]   = useState(false)
 
   useEffect(() => {
     setLoading(true)
+    setShowAll(false) // collapse back to 2 rows when category/search changes
     const timer = setTimeout(() => {
       fetchProducts({
         category: active === 'All' ? undefined : active,
@@ -102,6 +106,16 @@ export function Home() {
                     </Link>
                   </Button>
                 </div>
+
+                {/* Social proof — animated "Shivlings delivered" counter */}
+                <div className="mt-8 flex items-center gap-3">
+                  <span className="text-3xl font-bold text-primary md:text-4xl">
+                    <CountUp target={250} />+
+                  </span>
+                  <span className="max-w-[15rem] text-sm font-medium leading-snug text-emerald-600">
+                    Authentic Shivlings delivered to devotees across India
+                  </span>
+                </div>
               </div>
 
               {/* Logo image — 40% on desktop, hidden on mobile */}
@@ -160,7 +174,25 @@ export function Home() {
           </div>
         )}
 
-        <ProductGrid products={products} loading={loading} />
+        {/* Show only one row (4 items) by default, with a View all toggle.
+            Search results are never capped. */}
+        <ProductGrid
+          products={searchQuery || showAll ? products : products.slice(0, 4)}
+          loading={loading}
+        />
+
+        {!searchQuery && !loading && products.length > 4 && (
+          <div className="mt-8 flex justify-center">
+            <Button
+              size="lg"
+              onClick={() => setShowAll((v) => !v)}
+              className="px-10 text-base font-semibold shadow-sm"
+            >
+              {showAll ? 'Show less' : `View all ${products.length} products`}
+              {!showAll && <ArrowRight className="size-5" />}
+            </Button>
+          </div>
+        )}
       </section>
 
       {/* Category product segments — hidden when searching */}
@@ -180,6 +212,9 @@ export function Home() {
           />
         </>
       )}
+
+      {/* Customer testimonials — social proof, hidden when searching */}
+      {!searchQuery && <TestimonialsSection />}
 
       {/* SEO content + internal links — hidden when searching */}
       {!searchQuery && (

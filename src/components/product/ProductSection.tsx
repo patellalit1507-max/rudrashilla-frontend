@@ -2,23 +2,25 @@ import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { ArrowRight } from 'lucide-react'
 import { ProductGrid } from './ProductGrid'
+import { Button } from '@/components/ui/button'
 import { fetchProducts } from '@/services/productService'
 import type { Product } from '@/types'
 
 interface ProductSectionProps {
   /** Section heading shown above the grid */
   title: string
-  /** Category page the "View all" link points to (e.g. /category/home-shivling) */
+  /** Category page the "View all" button points to (e.g. /category/home-shivling) */
   viewAllHref: string
   category?: string
   shivlingType?: 'home' | 'temple'
   sort?: string
-  /** How many products to show in this section (default 8) */
+  /** How many products to show in this section (default 4 — one row) */
   limit?: number
 }
 
 /**
- * A self-contained home-page product row: heading + "View all" link + grid.
+ * A self-contained home-page product row: heading + one row of products +
+ * a prominent "View all" button linking to the full category page.
  * Fetches its own products so each section on the Home page is independent.
  * Renders nothing when the section has no products, keeping the page clean.
  */
@@ -28,9 +30,10 @@ export function ProductSection({
   category,
   shivlingType,
   sort,
-  limit = 8,
+  limit = 4,
 }: ProductSectionProps) {
   const [products, setProducts] = useState<Product[]>([])
+  const [total, setTotal] = useState(0)
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
@@ -38,7 +41,10 @@ export function ProductSection({
     setLoading(true)
     fetchProducts({ category, shivlingType, sort, limit })
       .then((res) => {
-        if (!cancelled) setProducts(res.products)
+        if (!cancelled) {
+          setProducts(res.products)
+          setTotal(res.total)
+        }
       })
       .catch(() => {
         if (!cancelled) setProducts([])
@@ -57,16 +63,19 @@ export function ProductSection({
 
   return (
     <section className="container mx-auto max-w-screen-2xl px-4 md:px-6">
-      <div className="mb-6 flex items-center justify-between gap-3">
-        <h2 className="text-xl font-semibold md:text-2xl">{title}</h2>
-        <Link
-          to={viewAllHref}
-          className="flex shrink-0 items-center gap-1 text-sm font-medium text-primary hover:text-primary/80"
-        >
-          View all <ArrowRight className="size-4" />
-        </Link>
-      </div>
+      <h2 className="mb-6 text-xl font-semibold md:text-2xl">{title}</h2>
+
       <ProductGrid products={products} loading={loading} />
+
+      {!loading && total > products.length && (
+        <div className="mt-8 flex justify-center">
+          <Button asChild size="lg" className="px-10 text-base font-semibold shadow-sm">
+            <Link to={viewAllHref}>
+              View all {total} products <ArrowRight className="size-5" />
+            </Link>
+          </Button>
+        </div>
+      )}
     </section>
   )
 }
