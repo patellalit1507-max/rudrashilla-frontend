@@ -1,124 +1,298 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
-        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
-  <!-- Homepage -->
   <url>
     <loc>https://rudrashilla.com/</loc>
+    <lastmod>2026-07-05</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
 
-  <!-- Shivling — highest priority product category -->
   <url>
     <loc>https://rudrashilla.com/category/shivling</loc>
+    <lastmod>2026-07-05</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.9</priority>
   </url>
 
-  <!-- Home Shivling (2–6 inch) -->
   <url>
     <loc>https://rudrashilla.com/category/home-shivling</loc>
+    <lastmod>2026-07-05</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.9</priority>
   </url>
 
-  <!-- Temple Shivling (6 inch+) -->
   <url>
     <loc>https://rudrashilla.com/category/temple-shivling</loc>
+    <lastmod>2026-07-05</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.9</priority>
   </url>
 
-  <!-- Jaladhari -->
+  <url>
+    <loc>https://rudrashilla.com/category/new</loc>
+    <lastmod>2026-07-05</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+  </url>
+
   <url>
     <loc>https://rudrashilla.com/category/jaladhari</loc>
+    <lastmod>2026-07-05</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
 
-  <!-- Individual product pages -->
   <url>
-    <loc>https://rudrashilla.com/product/classic-narmadeshwar-shivling</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>https://rudrashilla.com/product/rudra-rekha-narmadeshwar-shivling</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>https://rudrashilla.com/product/gangadhara-narmadeshwar-shivling</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>https://rudrashilla.com/product/ardhnareshwar-narmadeshwar-shivling</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://rudrashilla.com/product/stone-shivling-jaladhari</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
+    <loc>https://rudrashilla.com/category/sale</loc>
+    <lastmod>2026-07-05</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
   </url>
 
-  <!-- International Shipping -->
   <url>
     <loc>https://rudrashilla.com/international-shipping</loc>
+    <lastmod>2026-07-05</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
 
-  <!-- Blog listing -->
   <url>
     <loc>https://rudrashilla.com/blog</loc>
+    <lastmod>2026-07-05</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
 
-  <!-- Blog articles -->
   <url>
-    <loc>https://rudrashilla.com/blog/what-is-narmadeshwar-shivling</loc>
-    <changefreq>monthly</changefreq>
+    <loc>https://rudrashilla.com/product/narmadeshwar-shivling-2-4-inch-15</loc>
+    <lastmod>2026-07-05</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
+
   <url>
-    <loc>https://rudrashilla.com/blog/benefits-of-narmadeshwar-shivling</loc>
-    <changefreq>monthly</changefreq>
+    <loc>https://rudrashilla.com/product/narmadeshwar-shivling-2-4-inch-09</loc>
+    <lastmod>2026-07-05</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
+
   <url>
-    <loc>https://rudrashilla.com/blog/how-to-identify-original-narmadeshwar-shivling</loc>
-    <changefreq>monthly</changefreq>
+    <loc>https://rudrashilla.com/product/ardhnareshwar-narmadeshwar-shivling</loc>
+    <lastmod>2026-03-10</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://rudrashilla.com/product/narmadeshwar-shivling-2-4-inch-06</loc>
+    <lastmod>2026-07-05</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://rudrashilla.com/product/narmadeshwar-shivling-2-4-inch-08</loc>
+    <lastmod>2026-07-05</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://rudrashilla.com/product/narmadeshwar-shivling-2-4-inch-14</loc>
+    <lastmod>2026-07-05</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://rudrashilla.com/product/narmadeshwar-shivling-2-4-inch-12</loc>
+    <lastmod>2026-07-05</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://rudrashilla.com/product/narmadeshwar-shivling-2-4-inch-01</loc>
+    <lastmod>2026-07-05</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://rudrashilla.com/product/narmadeshwar-shivling-2-4-inch-05</loc>
+    <lastmod>2026-07-05</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://rudrashilla.com/product/classic-narmadeshwar-shivling</loc>
+    <lastmod>2026-03-10</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://rudrashilla.com/product/narmadeshwar-shivling-2-4-inch-19</loc>
+    <lastmod>2026-07-05</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://rudrashilla.com/product/narmadeshwar-shivling-2-4-inch-11</loc>
+    <lastmod>2026-07-05</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://rudrashilla.com/product/narmadeshwar-shivling-2-4-inch-17</loc>
+    <lastmod>2026-07-05</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://rudrashilla.com/product/narmadeshwar-shivling-2-4-inch-16</loc>
+    <lastmod>2026-07-05</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://rudrashilla.com/product/narmadeshwar-shivling-2-4-inch-20</loc>
+    <lastmod>2026-07-05</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://rudrashilla.com/product/rudra-rekha-narmadeshwar-shivling</loc>
+    <lastmod>2026-03-10</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://rudrashilla.com/product/stone-shivling-jaladhari</loc>
+    <lastmod>2026-03-10</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
+
   <url>
-    <loc>https://rudrashilla.com/blog/how-to-do-shivling-abhishek-at-home</loc>
-    <changefreq>monthly</changefreq>
+    <loc>https://rudrashilla.com/product/gangadhara-narmadeshwar-shivling</loc>
+    <lastmod>2026-03-10</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://rudrashilla.com/product/narmadeshwar-shivling-2-4-inch-10</loc>
+    <lastmod>2026-07-05</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://rudrashilla.com/product/classic-narmadeshwar-shivling-2inch</loc>
+    <lastmod>2026-07-05</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://rudrashilla.com/product/narmadeshwar-shivling-2-4-inch-18</loc>
+    <lastmod>2026-07-05</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://rudrashilla.com/product/narmadeshwar-shivling-2-4-inch-07</loc>
+    <lastmod>2026-07-05</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://rudrashilla.com/product/classic-narmadeshwar-shivling-temple</loc>
+    <lastmod>2026-07-05</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://rudrashilla.com/product/black-stone-jaladhari</loc>
+    <lastmod>2026-07-05</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
+
   <url>
-    <loc>https://rudrashilla.com/blog/why-narmada-river-stones-are-sacred</loc>
-    <changefreq>monthly</changefreq>
+    <loc>https://rudrashilla.com/product/black-lined-stone-jaladhari</loc>
+    <lastmod>2026-07-05</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
 
   <url>
     <loc>https://rudrashilla.com/blog/buy-shivling-online-india</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>https://rudrashilla.com/blog/what-is-jaladhari-for-shivling</loc>
+    <lastmod>2026-07-05</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
+
+  <url>
+    <loc>https://rudrashilla.com/blog/what-is-narmadeshwar-shivling</loc>
+    <lastmod>2026-07-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://rudrashilla.com/blog/benefits-of-narmadeshwar-shivling</loc>
+    <lastmod>2026-07-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://rudrashilla.com/blog/how-to-identify-original-narmadeshwar-shivling</loc>
+    <lastmod>2026-07-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://rudrashilla.com/blog/how-to-do-shivling-abhishek-at-home</loc>
+    <lastmod>2026-07-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://rudrashilla.com/blog/why-narmada-river-stones-are-sacred</loc>
+    <lastmod>2026-07-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://rudrashilla.com/blog/what-is-jaladhari-for-shivling</loc>
+    <lastmod>2026-07-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
   <url>
     <loc>https://rudrashilla.com/blog/nandi-shivling-significance</loc>
+    <lastmod>2026-07-05</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <priority>0.8</priority>
   </url>
 
 </urlset>
