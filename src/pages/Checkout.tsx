@@ -166,7 +166,7 @@ export function Checkout() {
         items: items.map((i) => ({
           name: i.product.name,
           quantity: i.quantity,
-          price: i.product.price,
+          price: i.product.price ?? 0,
           selectedSize: i.selectedSize,
         })),
         total: totalPrice,
@@ -347,7 +347,7 @@ export function Checkout() {
                       <p className="text-xs text-muted-foreground">Qty: {quantity}</p>
                     </div>
                     <span className="shrink-0 text-sm font-semibold">
-                      ₹{(product.price * quantity).toLocaleString('en-IN')}
+                      ₹{((product.price ?? 0) * quantity).toLocaleString('en-IN')}
                     </span>
                   </li>
                 ))}

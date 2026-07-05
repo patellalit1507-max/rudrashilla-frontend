@@ -43,7 +43,10 @@ export async function apiFetch<T>(path: string, init?: RequestInit): Promise<T> 
         'Content-Type': 'application/json',
         ...init?.headers,
       },
-      credentials: 'include', // sends httpOnly refresh-token cookie
+      // No credentials: the storefront is public and uses no auth cookie.
+      // Sending credentials made this a cross-site credentialed request, which
+      // Instagram's in-app browser (partitioned 3rd-party storage) blocks —
+      // causing products to silently fail to load from Instagram links.
       signal: controller.signal,
     })
   } catch (err) {

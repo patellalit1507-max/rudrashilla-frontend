@@ -2,7 +2,7 @@ export interface Product {
   id: string
   slug?: string
   name: string
-  price: number
+  price?: number
   originalPrice?: number
   image: string
   images?: string[]

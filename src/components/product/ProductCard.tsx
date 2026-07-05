@@ -17,7 +17,7 @@ const BADGE_STYLES: Record<NonNullable<Product['badge']>, string> = {
 
 export function ProductCard({ product }: ProductCardProps) {
   const { addToCart } = useCart()
-  const discount = product.originalPrice
+  const discount = product.price != null && product.originalPrice
     ? Math.round((1 - product.price / product.originalPrice) * 100)
     : null
 
@@ -71,7 +71,7 @@ export function ProductCard({ product }: ProductCardProps) {
             <span className="text-sm font-semibold text-muted-foreground italic">
               Price on request
             </span>
-          ) : (
+          ) : product.price != null ? (
             <>
               <span className="text-sm font-semibold">
                 ₹{product.price.toLocaleString("en-IN")}
@@ -82,6 +82,10 @@ export function ProductCard({ product }: ProductCardProps) {
                 </span>
               )}
             </>
+          ) : (
+            <span className="text-sm font-semibold text-muted-foreground italic">
+              Price on request
+            </span>
           )}
         </div>
 

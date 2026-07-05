@@ -19,7 +19,15 @@
       "Bash(grep -n \"$\\\\|₹\\\\|toFixed\\\\|toLocale\" c:/Users/ASUS/rudrashilla-frontend/src/pages/Cart.tsx)",
       "Bash(grep -rn \"$\\\\|toFixed\" c:/Users/ASUS/rudrashilla-frontend/src/components/cart/)",
       "Read(//c/Users/ASUS/rudrashilla-backend/**)",
-      "Bash(npx tsx scripts/add-slugs.ts)"
+      "Bash(npx tsx scripts/add-slugs.ts)",
+      "PowerShell(npm run *)",
+      "PowerShell(git add *)",
+      "PowerShell(git *)",
+      "PowerShell(Write-Output \"=== BACKEND ===\"; & cmd /c \"cd /d C:\\\\Users\\\\ASUS\\\\projects\\\\rudrashilla\\\\rudrashilla-backend && npx tsc --noEmit\" 2>&1 | Out-String)",
+      "PowerShell(Write-Output \"=== ADMIN ===\"; & cmd /c \"cd /d C:\\\\Users\\\\ASUS\\\\projects\\\\rudrashilla\\\\rudrashilla-admin && npm run build\" 2>&1 | Out-String)",
+      "PowerShell(& cmd /c \"cd /d C:\\\\Users\\\\ASUS\\\\projects\\\\rudrashilla\\\\rudrashilla-admin && npm run build\" 2>&1 | Out-String)",
+      "PowerShell(Write-Output \"=== BACKEND status ===\"; & cmd /c \"cd /d C:\\\\Users\\\\ASUS\\\\projects\\\\rudrashilla\\\\rudrashilla-backend && git status --short && git branch --show-current && git remote -v\" 2>&1 | Out-String; Write-Output \"=== ADMIN status ===\"; & cmd /c \"cd /d C:\\\\Users\\\\ASUS\\\\projects\\\\rudrashilla\\\\rudrashilla-admin && git status --short && git branch --show-current && git remote -v\" 2>&1 | Out-String)",
+      "PowerShell(foreach \\($r in @\\('rudrashilla-frontend','rudrashilla-backend','rudrashilla-admin'\\)\\) { $p = \"C:\\\\Users\\\\ASUS\\\\projects\\\\rudrashilla\\\\$r\"; Write-Output \"=== $r ===\"; & cmd /c \"cd /d $p && git status --short && echo --- && git log origin/main..HEAD --oneline\" 2>&1 | Out-String })"
     ]
   }
 }

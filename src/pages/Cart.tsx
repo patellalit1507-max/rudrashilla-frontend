@@ -62,7 +62,7 @@ export function Cart() {
                   </p>
                 )}
                 <p className="mt-auto text-sm font-semibold">
-                  ₹{product.price.toLocaleString("en-IN")}
+                  ₹{(product.price ?? 0).toLocaleString("en-IN")}
                 </p>
               </div>
 
@@ -138,7 +138,7 @@ export function Cart() {
                   '🛒 *New Order — Rudrashilla*',
                   '',
                   ...items.map(({ product, quantity, selectedSize }) =>
-                    `• ${product.name}${selectedSize ? ` (${selectedSize})` : ''} × ${quantity} — ₹${(product.price * quantity).toLocaleString('en-IN')}`
+                    `• ${product.name}${selectedSize ? ` (${selectedSize})` : ''} × ${quantity} — ₹${((product.price ?? 0) * quantity).toLocaleString('en-IN')}`
                   ),
                   '',
                   `*Total: ₹${totalPrice.toLocaleString('en-IN')}`,
@@ -150,7 +150,7 @@ export function Cart() {
                   items: items.map((i) => ({
                     name: i.product.name,
                     quantity: i.quantity,
-                    price: i.product.price,
+                    price: i.product.price ?? 0,
                     selectedSize: i.selectedSize,
                   })),
                   total: totalPrice,

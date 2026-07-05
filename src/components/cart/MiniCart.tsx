@@ -91,7 +91,7 @@ export function MiniCart() {
                     )}
 
                     <p className="text-sm font-semibold">
-                      ₹{(product.price * quantity).toLocaleString('en-IN')}
+                      ₹{((product.price ?? 0) * quantity).toLocaleString('en-IN')}
                     </p>
 
                     {/* Qty controls */}

@@ -4,6 +4,7 @@ import { Helmet } from 'react-helmet-async'
 import { ArrowRight, X, Globe } from 'lucide-react'
 import logo from '@/assets/logo/logo.png'
 import { ProductGrid } from '@/components/product/ProductGrid'
+import { ProductSection } from '@/components/product/ProductSection'
 import { Button } from '@/components/ui/button'
 import { CATEGORIES } from '@/data/products'
 import type { CategoryType } from '@/data/products'
@@ -161,6 +162,24 @@ export function Home() {
 
         <ProductGrid products={products} loading={loading} />
       </section>
+
+      {/* Category product segments — hidden when searching */}
+      {!searchQuery && (
+        <>
+          <ProductSection
+            title="Home Shivling (2–6 inch)"
+            viewAllHref="/category/home-shivling"
+            category="Shivling"
+            shivlingType="home"
+          />
+          <ProductSection
+            title="Mandir Shivling"
+            viewAllHref="/category/temple-shivling"
+            category="Shivling"
+            shivlingType="temple"
+          />
+        </>
+      )}
 
       {/* SEO content + internal links — hidden when searching */}
       {!searchQuery && (

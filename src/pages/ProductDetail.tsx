@@ -228,7 +228,7 @@ export function ProductDetail() {
   if (notFound || !product) return <Navigate to="/" replace />
 
   const isShivling = product.category === 'Shivling'
-  const discount = product.originalPrice
+  const discount = product.price != null && product.originalPrice
     ? Math.round((1 - product.price / product.originalPrice) * 100)
     : null
 
@@ -359,7 +359,7 @@ export function ProductDetail() {
                 Price varies by size & natural weight. Raise a query below for a personalised quote.
               </p>
             </div>
-          ) : (
+          ) : product.price != null ? (
             <div className="flex items-baseline gap-3">
               <span className="text-2xl font-bold">₹{product.price.toLocaleString("en-IN")}</span>
               {product.originalPrice && (
@@ -370,6 +370,15 @@ export function ProductDetail() {
               {discount && (
                 <span className="text-sm font-semibold text-red-500">{discount}% off</span>
               )}
+            </div>
+          ) : (
+            <div className="flex flex-col gap-0.5">
+              <span className="text-lg font-semibold text-muted-foreground italic">
+                Price on request
+              </span>
+              <p className="text-xs text-muted-foreground">
+                Raise a query below for a personalised quote.
+              </p>
             </div>
           )}
 
