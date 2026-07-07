@@ -6,6 +6,7 @@ import logo from '@/assets/logo/logo.png'
 import { ProductGrid } from '@/components/product/ProductGrid'
 import { ProductSection } from '@/components/product/ProductSection'
 import { TestimonialsSection } from '@/components/home/TestimonialsSection'
+import { ReviewForm } from '@/components/home/ReviewForm'
 import { CountUp } from '@/components/common/CountUp'
 import { Button } from '@/components/ui/button'
 import { CATEGORIES } from '@/data/products'
@@ -215,6 +216,9 @@ export function Home() {
 
       {/* Customer testimonials — social proof, hidden when searching */}
       {!searchQuery && <TestimonialsSection />}
+
+      {/* Customer review submission form, hidden when searching */}
+      {!searchQuery && <ReviewForm />}
 
       {/* SEO content + internal links — hidden when searching */}
       {!searchQuery && (

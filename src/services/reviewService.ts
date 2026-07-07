@@ -19,6 +19,24 @@ function mapReview(r: Record<string, unknown>): Review {
   }
 }
 
+/** Submit a general site testimonial (not tied to any product). */
+export async function submitSiteReview(input: {
+  author: string
+  rating: number
+  body: string
+}): Promise<void> {
+  await apiFetch('/reviews', {
+    method: 'POST',
+    body: JSON.stringify(input),
+  })
+}
+
+/** Verified general testimonials submitted by customers via the home page. */
+export async function fetchSiteReviews(): Promise<Review[]> {
+  const data = await apiFetch<{ reviews: Record<string, unknown>[] }>('/reviews/site')
+  return data.reviews.map(mapReview)
+}
+
 export async function fetchReviews(productId: string): Promise<{
   reviews: Review[]
   averageRating: number

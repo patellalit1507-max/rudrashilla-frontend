@@ -1,12 +1,13 @@
+import { useState, useEffect } from 'react'
 import { Star, Quote, BadgeCheck } from 'lucide-react'
-import { REVIEWS } from '@/data/reviews'
+import { REVIEWS, type Review } from '@/data/reviews'
+import { fetchSiteReviews } from '@/services/reviewService'
 import { cn } from '@/lib/utils'
 
-// Curated set shown on the home page — favour verified, higher-rated reviews
-// so the testimonials read as strong social proof.
-const TESTIMONIALS = [...REVIEWS]
-  .sort((a, b) => Number(b.verified) - Number(a.verified) || b.rating - a.rating)
-  .slice(0, 6)
+// Static fallback set — favour verified, higher-rated reviews.
+const CURATED = [...REVIEWS].sort(
+  (a, b) => Number(b.verified) - Number(a.verified) || b.rating - a.rating,
+)
 
 const AVATAR_COLORS = [
   'bg-amber-100 text-amber-700',
@@ -34,8 +35,19 @@ function Stars({ rating }: { rating: number }) {
 }
 
 export function TestimonialsSection() {
-  const total = REVIEWS.length
-  const avg = REVIEWS.reduce((s, r) => s + r.rating, 0) / total
+  const [liveReviews, setLiveReviews] = useState<Review[]>([])
+
+  useEffect(() => {
+    fetchSiteReviews()
+      .then(setLiveReviews)
+      .catch(() => setLiveReviews([]))
+  }, [])
+
+  // Real customer-submitted reviews lead, curated ones fill the rest.
+  const combined = [...liveReviews, ...CURATED]
+  const shown = combined.slice(0, 6)
+  const total = combined.length
+  const avg = total > 0 ? combined.reduce((s, r) => s + r.rating, 0) / total : 0
 
   return (
     <section className="container mx-auto max-w-screen-2xl px-4 md:px-6">
@@ -47,14 +59,14 @@ export function TestimonialsSection() {
             <Stars rating={Math.round(avg)} />
             <span className="text-sm font-medium">{avg.toFixed(1)} out of 5</span>
             <span className="text-sm text-muted-foreground">
-              · based on {total}+ verified reviews
+              · based on {total}+ reviews
             </span>
           </div>
         </div>
 
         {/* Testimonial cards */}
         <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-          {TESTIMONIALS.map((r, i) => (
+          {shown.map((r, i) => (
             <figure
               key={r.id}
               className="relative flex flex-col rounded-xl border bg-card p-5 shadow-sm"
@@ -64,7 +76,9 @@ export function TestimonialsSection() {
               <Stars rating={r.rating} />
 
               <blockquote className="mt-3 flex-1">
-                <p className="text-sm font-medium leading-snug">{r.title}</p>
+                {r.title && (
+                  <p className="text-sm font-medium leading-snug">{r.title}</p>
+                )}
                 <p className="mt-1.5 text-sm leading-relaxed text-muted-foreground">
                   “{r.body}”
                 </p>
