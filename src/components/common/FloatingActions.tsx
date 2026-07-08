@@ -1,4 +1,5 @@
 import { Phone } from 'lucide-react'
+import { notifySocialClick } from '@/services/socialClickService'
 
 // WhatsApp / phone number (digits only, with country code)
 const PHONE = '917772808081'
@@ -13,6 +14,7 @@ export function FloatingActions() {
         target="_blank"
         rel="noopener noreferrer"
         aria-label="Chat on WhatsApp"
+        onClick={() => notifySocialClick('whatsapp')}
         className="flex size-13 items-center justify-center rounded-full bg-[#25D366] text-white shadow-lg ring-2 ring-white transition-transform hover:scale-110 active:scale-95"
       >
         <svg viewBox="0 0 24 24" className="size-6 fill-current" aria-hidden>
@@ -26,6 +28,7 @@ export function FloatingActions() {
         target="_blank"
         rel="noopener noreferrer"
         aria-label="Follow us on Instagram"
+        onClick={() => notifySocialClick('instagram')}
         className="flex size-13 items-center justify-center rounded-full bg-[linear-gradient(45deg,#feda75,#fa7e1e,#d62976,#962fbf,#4f5bd5)] text-white shadow-lg ring-2 ring-white transition-transform hover:scale-110 active:scale-95"
       >
         <svg viewBox="0 0 24 24" className="size-6 fill-current" aria-hidden>
