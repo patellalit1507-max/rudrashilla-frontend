@@ -35,12 +35,16 @@ export async function apiFetch<T>(path: string, init?: RequestInit): Promise<T> 
   const controller = new AbortController()
   const timer = setTimeout(() => controller.abort(), TIMEOUT_MS)
 
+  // FormData bodies (file uploads) must NOT get a manual Content-Type — the
+  // browser sets its own multipart boundary, which we'd otherwise clobber.
+  const isFormData = init?.body instanceof FormData
+
   let res: Response
   try {
     res = await fetch(`${BASE_URL}${path}`, {
       ...init,
       headers: {
-        'Content-Type': 'application/json',
+        ...(isFormData ? {} : { 'Content-Type': 'application/json' }),
         ...init?.headers,
       },
       // No credentials: the storefront is public and uses no auth cookie.

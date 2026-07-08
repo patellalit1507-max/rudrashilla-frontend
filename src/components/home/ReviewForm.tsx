@@ -1,29 +1,66 @@
-import { useState } from 'react'
-import { Star, CheckCircle2 } from 'lucide-react'
+import { useState, useRef } from 'react'
+import { Star, CheckCircle2, ImagePlus, X } from 'lucide-react'
 import { Button } from '@/components/ui/button'
-import { submitSiteReview } from '@/services/reviewService'
+import { submitSiteReview, uploadReviewImage } from '@/services/reviewService'
 import { cn } from '@/lib/utils'
+
+const MAX_FILE_SIZE = 5 * 1024 * 1024 // 5MB, matches the backend limit
 
 /**
  * Simple "share your experience" form for customers who bought a Shivling.
- * Collects name, a star rating and a testimonial — submitted as a general
- * site review (no product) that goes live immediately, no approval step.
+ * Collects name, a star rating, a testimonial and an optional photo —
+ * submitted as a general site review (no product) that goes live
+ * immediately, no approval step.
  */
 export function ReviewForm() {
   const [name, setName] = useState('')
   const [rating, setRating] = useState(0)
   const [hover, setHover] = useState(0)
   const [body, setBody] = useState('')
+  const [imageFile, setImageFile] = useState<File | null>(null)
+  const [imagePreview, setImagePreview] = useState<string | null>(null)
+  const [imageError, setImageError] = useState<string | null>(null)
   const [status, setStatus] = useState<'idle' | 'submitting' | 'done' | 'error'>('idle')
+  const fileInputRef = useRef<HTMLInputElement>(null)
 
   const canSubmit = name.trim() && rating > 0 && body.trim() && status !== 'submitting'
+
+  function handlePickImage(e: React.ChangeEvent<HTMLInputElement>) {
+    const file = e.target.files?.[0]
+    if (!file) return
+
+    setImageError(null)
+    if (!file.type.startsWith('image/')) {
+      setImageError('Please choose an image file.')
+      return
+    }
+    if (file.size > MAX_FILE_SIZE) {
+      setImageError('Image must be 5MB or smaller.')
+      return
+    }
+
+    setImageFile(file)
+    setImagePreview((prev) => {
+      if (prev) URL.revokeObjectURL(prev)
+      return URL.createObjectURL(file)
+    })
+  }
+
+  function removeImage() {
+    if (imagePreview) URL.revokeObjectURL(imagePreview)
+    setImageFile(null)
+    setImagePreview(null)
+    setImageError(null)
+    if (fileInputRef.current) fileInputRef.current.value = ''
+  }
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault()
     if (!canSubmit) return
     setStatus('submitting')
     try {
-      await submitSiteReview({ author: name.trim(), rating, body: body.trim() })
+      const image = imageFile ? await uploadReviewImage(imageFile) : undefined
+      await submitSiteReview({ author: name.trim(), rating, body: body.trim(), image })
       setStatus('done')
     } catch {
       setStatus('error')
@@ -107,6 +144,46 @@ export function ReviewForm() {
                   maxLength={1000}
                   className="resize-y rounded-md border border-input bg-background px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-primary/40"
                 />
+              </div>
+
+              {/* Photo (optional) */}
+              <div className="flex flex-col gap-1.5">
+                <span className="text-sm font-medium">Add a Photo (optional)</span>
+                <input
+                  ref={fileInputRef}
+                  type="file"
+                  accept="image/jpeg,image/png,image/webp,image/gif"
+                  onChange={handlePickImage}
+                  className="hidden"
+                  id="review-image"
+                />
+
+                {imagePreview ? (
+                  <div className="relative w-fit">
+                    <img
+                      src={imagePreview}
+                      alt="Your upload preview"
+                      className="h-28 w-28 rounded-lg border object-cover"
+                    />
+                    <button
+                      type="button"
+                      onClick={removeImage}
+                      aria-label="Remove photo"
+                      className="absolute -right-2 -top-2 flex size-6 items-center justify-center rounded-full bg-foreground text-background shadow"
+                    >
+                      <X className="size-3.5" />
+                    </button>
+                  </div>
+                ) : (
+                  <label
+                    htmlFor="review-image"
+                    className="flex w-fit cursor-pointer items-center gap-2 rounded-md border border-dashed border-input px-4 py-2.5 text-sm text-muted-foreground transition-colors hover:border-primary hover:text-primary"
+                  >
+                    <ImagePlus className="size-4" />
+                    Choose a photo
+                  </label>
+                )}
+                {imageError && <p className="text-sm text-destructive">{imageError}</p>}
               </div>
 
               {status === 'error' && (

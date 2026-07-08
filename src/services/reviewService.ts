@@ -15,8 +15,20 @@ function mapReview(r: Record<string, unknown>): Review {
     date: r.createdAt as string,
     title: r.title as string,
     body: r.body as string,
+    image: (r.image as string | null) ?? undefined,
     verified: r.verified as boolean,
   }
+}
+
+/** Upload a review photo, returning its Cloudinary URL. */
+export async function uploadReviewImage(file: File): Promise<string> {
+  const form = new FormData()
+  form.append('image', file)
+  const data = await apiFetch<{ url: string }>('/uploads/review-image', {
+    method: 'POST',
+    body: form,
+  })
+  return data.url
 }
 
 /** Submit a general site testimonial (not tied to any product). */
@@ -24,6 +36,7 @@ export async function submitSiteReview(input: {
   author: string
   rating: number
   body: string
+  image?: string
 }): Promise<void> {
   await apiFetch('/reviews', {
     method: 'POST',

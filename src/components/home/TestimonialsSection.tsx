@@ -75,6 +75,15 @@ export function TestimonialsSection() {
 
               <Stars rating={r.rating} />
 
+              {r.image && (
+                <img
+                  src={r.image}
+                  alt={`Photo shared by ${r.author}`}
+                  loading="lazy"
+                  className="mt-3 h-40 w-full rounded-lg border object-cover"
+                />
+              )}
+
               <blockquote className="mt-3 flex-1">
                 {r.title && (
                   <p className="text-sm font-medium leading-snug">{r.title}</p>
